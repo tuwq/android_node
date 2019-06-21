@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_freespace"
+        android:layout_width="220px"
+        android:layout_height="wrap_content"
+        android:background="#ff0000"
+        android:text="剩余大小"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/tv_totalspace"
+        android:layout_below="@id/tv_freespace"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="#00ff00"
+        android:text="总的大小"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_totalspace"
+        android:text="写入sd卡"
+        android:onClick="saveSdCard"
+        />
+</RelativeLayout>
