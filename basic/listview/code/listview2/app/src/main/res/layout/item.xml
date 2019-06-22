@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_toRightOf="@id/iv_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="5dp"
+        android:text="高考成绩今日公布"
+        />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_toRightOf="@id/iv_icon"
+        android:layout_below="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#88000000"
+        android:text="根据此前公布的时间表,从22日起"
+        />
+</RelativeLayout>
