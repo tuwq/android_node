@@ -8,7 +8,6 @@
 	有序广播: 可以通过priority设置接收顺序,可以被abortBroadcast中断
 	无序广播: 大家一起收到,无法被中断
 
-
 ### 静态注册与动态注册
 	静态注册: 在main.xml清单文件声明recevier节点,指定intent-filter,这种方式就是静态注册 
 	动态注册: 采用代码进行注册

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Day11_12_常见对话框</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="dialog_title">i am ordinary dialog</string>
+    <string name="dialog_content"></string>
+</resources>
