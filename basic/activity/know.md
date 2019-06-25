@@ -7,11 +7,6 @@
 	getApplicationContext()获取的是应用的上下文,该上下文生命周期是整个应用的生命周期,使用安全
 	使用activity作为上下文,可能会产生内存泄漏
 
-# 创建activity
-	类继承activity
-	重写onCreate提供初始化
-	在main.xml中声明一个activity信息
-
 ## 隐式意图和显式意图
 	通过匹配main.xml中的intent-filter的action,data等内容打开对应的activity称为隐式意图
 	通过类名直接指定打开对应activity称为显式意图
@@ -34,9 +29,16 @@
 	onResume: 走完这个activity就处于一个前台activity的状态(可见可以被操作),加载数据,恢复播放状态
 	onPause:  走玩这个activity就处于暂停状态(可见不可以被操作)
 	onStop:   走完这个activity就处于停止状态(不可见不可以被操作),停止所有关于刷新界面的操作
-	onDestory: 走完这个activity就被销毁,释放资源的操作
+	onDestory: 走完这个activity就被销毁(系统释放或finish时),释放资源的操作
 	从停止状态(onStop执行后)回到前台
 	onRestart()
 	onStart()
 	onResume()
+
+## activity任务栈
+	standard: 标准模式,默认就是这种模式,只要调用startActivity(startActivityforResult)就会创建activity对应示例
+	singleTop: 在任务栈的栈顶只有一个实例,如果栈顶存在一个实例,再创建这个activity的对象,不会成功(扫码最终操作)
+	singleTask: 在任务栈中只有一个实例,如果栈中已经存在了一个singleTask的activity,那么再次开启这个activity,不会创建新的对象,
+		而是把这个activity上面的所有activity都关闭,把这个activity露出来(主界面)
+	singleInstance: 在当前设备只有一个实例,并且这个实例会创建一个单独的任务栈,这个栈中只有这一个实例(浏览器)
 	
