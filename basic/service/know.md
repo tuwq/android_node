@@ -33,5 +33,6 @@
 		再次调用bindService时候,只执行onServiceConnected()
 		activity退出的时候必须通过unbindService解除服务绑定
 		再次调用unbindService将报错崩溃
+	startService与bindService可以混合使用
 
 
