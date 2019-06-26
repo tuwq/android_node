@@ -28,10 +28,10 @@
 	如果在activity中通过startService方法开启一个服务,当activity退出的时候,service不会销毁,依然在后台运行
 		只有手动调用stopService或者在应用管理器中关闭service,服务才会销毁
 	bindService开启的服务跟activity之间的关系同死
-	bindService开启服务
+	bindService开启服务,与activity有关联
 		第一次调用bindService时候,执行onCreate()->onBind()->onServiceConnected()
 		再次调用bindService时候,只执行onServiceConnected()
-		activity退出的时候必须通过unbindService关闭服务
+		activity退出的时候必须通过unbindService解除服务绑定
 		再次调用unbindService将报错崩溃
 
 
