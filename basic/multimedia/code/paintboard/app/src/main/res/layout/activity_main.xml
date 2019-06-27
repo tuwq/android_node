@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+    <Button
+        android:id="@+id/btn_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="changeColor"
+        android:text="画笔颜色"/>
+    <Button
+        android:id="@+id/btn_width"
+        android:layout_toRightOf="@id/btn_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="bold"
+        android:text="画笔变粗"/>
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_toRightOf="@id/btn_width"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="save"
+        android:text="保存图片"/>
+    <ImageView
+        android:layout_below="@id/btn_color"
+        android:id="@+id/iv_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>
