@@ -1,0 +1,14 @@
+## 输出函数
+	printf("要输出的内容+占位符",...)
+## 常用占位符
+	%d		int
+	%ld 	long int
+	%lld 	long long
+	%hd 	短整型
+	%c 		char
+	%f 		float
+	%lf 	double
+	%u 		无符号数
+	%x 		十六进制输出 int或者long int或者short int
+	%o 		八进制输出
+	%s 		字符串

@@ -1,0 +1,21 @@
+## Java的基本数据类型
+	boolean
+	byte(1)
+	char(2)
+	short(2)
+	int(4)
+	long(8)
+	float(4)
+	double(8)
+## c的基本数据类型
+	0和非0表示true和false
+	char(1)
+	short(2)
+	int(4)
+	long(4)
+	float(4)
+	double(8)
+## 有符号和无符号
+	signed unsigned只能用来修饰整形变量,char short int long
+	signed有符号 默认情况下都是有符号的 可以表示负数 最大值相对小,因为第一位为符号位
+	unsigned无符号 如果加上了unsigned修饰符,不可以表示负数,最大值相对大
