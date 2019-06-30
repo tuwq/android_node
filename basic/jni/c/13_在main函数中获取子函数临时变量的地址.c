@@ -10,7 +10,8 @@ function(int** q) {
 main() {
 	int* p;
 	function(&p);
-	printf("p的地址%#x\n", p);
-	printf("*p的值%d\n", *p);
+	printf("*p的值 %d\n", *p);
+	printf("p的地址 %#x\n", p);
+	printf("*p的值 %d\n", *p);
 	system("pause");
 }
