@@ -39,4 +39,13 @@
 		忘记写System.loadLibrary,可以通过静态代码块加载.so文件
 	找lib的时候(so文件)返回null
 		名字写错了,lib前缀去掉,.so后缀去掉,剩下的就是要加载的文件名字
-		当前的.so文件不能被.so文件不被cpu平台支持,需要通过在jni目录下添加Application.mk来指定编译之后.so支持的cpu平台
+		当前的so文件不能被so文件不被cpu平台支持,需要通过在jni目录下添加Application.mk来指定编译之后so支持的cpu平台
+
+## c++环境
+	在c++环境下,jniEnv不再是结构体的一级指针 而是结构体 JNIEnv的别名
+	所以env是JNIEnv的一级指针,访问结构体函数 env->
+	c++的结构体中可以声明函数,c的结构体中只能声明函数指针 不能有函数的实现
+	在JNIEnv这个结构体中 定义了大量的函数 实际上就是调用了结构体JNINativeInterface的同名函数指针,
+		并且在调用的时候,把第一个参数JNIEnv*传进去了,所以env调用函数时不需要env作为第一个参数
+	c++的函数的在使用的时候,要先声明,可以用生成的.h头文件作为函数的声明,可以把.h头文件放入cpp源代码相同的目录下,
+		include "" 把.h头文件导入进来 作为函数的声明,采用jdk的javah com.tuwq.hello.MainActivity就会生成类的.h文件
