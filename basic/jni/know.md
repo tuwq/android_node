@@ -48,4 +48,5 @@
 	在JNIEnv这个结构体中 定义了大量的函数 实际上就是调用了结构体JNINativeInterface的同名函数指针,
 		并且在调用的时候,把第一个参数JNIEnv*传进去了,所以env调用函数时不需要env作为第一个参数
 	c++的函数的在使用的时候,要先声明,可以用生成的.h头文件作为函数的声明,可以把.h头文件放入cpp源代码相同的目录下,
-		include "" 把.h头文件导入进来 作为函数的声明,采用jdk的javah com.tuwq.hello.MainActivity就会生成类的.h文件
+		include "" 把.h头文件导入进来 作为函数的声明,
+		java目录下采用jdk的javah -classpath . -jni  -encoding UTF-8 com.tuwq.jnicplus.MainActivity
