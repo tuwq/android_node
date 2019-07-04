@@ -3,9 +3,11 @@
 	activity可以创建一个窗口,在这个窗口上加载用户交互的界面
 	activity创建的时间就会调用onCreate
 
-# 上下文
-	getApplicationContext()获取的是应用的上下文,该上下文生命周期是整个应用的生命周期,使用安全
-	使用activity作为上下文,可能会产生内存泄漏
+# 两种上下文
+	activity.this Context子类 表示当前的activity,只能在当前的activity中使用
+	getApplicationContext() 返回Context,表示应用程序的总的上下文,任何activity中都可以用
+		在activity中都可以使用,在activity中getApplicationContext()可以取代activity.this
+		特殊情况: dialog中使用,要用activity.this,否则无法找到挂载的activity
 
 ## 隐式意图和显式意图
 	通过匹配main.xml中的intent-filter的action,data等内容打开对应的activity称为隐式意图

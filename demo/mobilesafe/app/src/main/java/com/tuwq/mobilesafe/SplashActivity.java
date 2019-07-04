@@ -42,7 +42,6 @@ public class SplashActivity extends Activity {
     String mNewsMsg;
     ProgressDialog progressDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
