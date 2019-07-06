@@ -80,17 +80,22 @@
             android:background="@drawable/selector_home_setting"
             android:scaleType="center"
             android:clickable="true"
+            android:onClick="enterSetting"
             ></ImageView>
 
     </RelativeLayout>
 
     <!-- 根据listview相似的操作
          numColumns : 设置显示的列数
+         horizontalSpacing : 设置列与列之间的距离
+         verticalSpacing : 行与行之间的距离
     -->
     <GridView
         android:id="@+id/home_gv_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="2"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
         ></GridView>
 </LinearLayout>
