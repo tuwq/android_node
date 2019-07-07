@@ -1,20 +1,31 @@
 package com.tuwq.mobilesafe;
 
-import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class HomeActivity extends Activity {
+import com.tuwq.mobilesafe.utils.SettingConstants;
+import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
+
+public class HomeActivity extends Activity implements AdapterView.OnItemClickListener {
 
     View mLogo;
     GridView mGridView;
@@ -46,6 +57,132 @@ public class HomeActivity extends Activity {
         setAnimation();
         // 通过gridView显示数据
         mGridView.setAdapter(new MyAdaptor());
+        // 设置gridView的条目点击事件
+        mGridView.setOnItemClickListener(this);
+    }
+
+    /**
+     * gridview的条目点击事件
+     * @param parent
+     * @param view 被点击条目的view对象
+     * @param position 被点击的条目的索引（位置）
+     * @param id 被点击的条目的id
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+                            long id)  {
+        switch (position) {
+            case 0:
+                // 手机防盗
+                // 弹出设置密码对话框
+                // showSetPassWordDialog();
+                // 判断是弹出设置密码对话框还是验证密码对话框
+                // 问题：需要知道密码是否设置成功
+                // 当设置密码成功，保存密码，再次点击手机防盗条目的时候，获取保存的密码，如果有保存，弹出验证密码对话框，如果没有弹出设置密码对话框
+                String sp_psw = SharedPreferencesUtil.getString(
+                        getApplicationContext(), SettingConstants.SJFDPSW, "");
+                if (TextUtils.isEmpty(sp_psw)) {
+                    showSetPassWordDialog();
+                } else {
+                    // 验证密码
+                    showEnterPassWordDialog();
+                }
+                break;
+        }
+    }
+
+    /**
+     * 弹出验证密码对话框
+     */
+    private void showEnterPassWordDialog() {
+        AlertDialog.Builder builder = new Builder(this);
+        View view = View.inflate(getApplicationContext(),
+                R.layout.home_enterpassword_dialog, null);
+        // 初始化控件
+        final EditText mPsw = (EditText) view.findViewById(R.id.dialog_et_psw);
+        Button mOk = (Button) view.findViewById(R.id.dialog_ok);
+        Button mCancel = (Button) view.findViewById(R.id.dialog_cancel);
+        // 设置按钮点击事件
+        mOk.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //1.获取输入的密码
+                String psw = mPsw.getText().toString().trim();
+                if (TextUtils.isEmpty(psw)) {
+                    Toast.makeText(getApplicationContext(), "密码不能为空", 0).show();
+                    return;
+                }
+                //2.获取保存的密码，判断输入密码是否正确
+                String sp_psw = SharedPreferencesUtil.getString(getApplicationContext(), SettingConstants.SJFDPSW, "");
+                if (psw.equals(sp_psw)) {
+                    Toast.makeText(getApplicationContext(), "密码正确", 0).show();
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getApplicationContext(), "密码错误", 0).show();
+                }
+            }
+        });
+        mCancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 隐藏对话框
+                dialog.dismiss();
+            }
+        });
+        builder.setView(view);// 将一个view对象添加到对话框中显示
+        // builder.show();
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    /**
+     * 弹出设置密码对话框
+     */
+    private void showSetPassWordDialog() {
+        AlertDialog.Builder builder = new Builder(this);
+        View view = View.inflate(getApplicationContext(), R.layout.home_setpassword_dialog, null);
+        // 初始化控件
+        final EditText mPsw = (EditText) view.findViewById(R.id.dialog_et_psw);
+        final EditText mConfirm = (EditText) view.findViewById(R.id.dialog_et_confirm);
+        Button mOk = (Button) view.findViewById(R.id.dialog_ok);
+        Button mCancel = (Button) view.findViewById(R.id.dialog_cancel);
+        // 设置按钮点击事件
+        mOk.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 1.获取输入的密码
+                String psw = mPsw.getText().toString().trim();
+                // 判断密码是否为空
+                if (TextUtils.isEmpty(psw)) {// null ""
+                    Toast.makeText(getApplicationContext(), "密码不能为空", 0).show();
+                    return;
+                }
+                // 2.获取再次输入的密码，判断两次密码是否一致
+                String confirm = mConfirm.getText().toString().trim();
+                if (psw.equals(confirm)) {
+                    Toast.makeText(getApplicationContext(), "密码设置成功", 0).show();
+                    // 隐藏对话框
+                    dialog.dismiss();
+                    // 保存设置的密码，为再次点击手机防盗条目判断做准备
+                    SharedPreferencesUtil.saveString(getApplicationContext(),
+                            SettingConstants.SJFDPSW, psw);
+                } else {
+                    Toast.makeText(getApplicationContext(), "两次密码不一致", 0)
+                            .show();
+                }
+            }
+        });
+        mCancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 隐藏对话框
+                dialog.dismiss();
+            }
+        });
+        builder.setView(view);// 将一个view对象添加到对话框中显示
+        // builder.show();
+        dialog = builder.create();
+        dialog.show();
     }
 
     /**
