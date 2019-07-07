@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:itheima="http://schemas.android.com/apk/res/com.tuwq.mobilesafe"
+    xmlns:tuwq="http://schemas.android.com/apk/res/com.tuwq.mobilesafe"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,16 +20,16 @@
         android:background="@drawable/selector_setting_item_top"
         android:layout_marginTop="8dp"
         android:clickable="true"
-        itheima:title="设置自动更新"
-        itheima:istoggle="true"
+        tuwq:title="设置自动更新"
+        tuwq:istoggle="true"
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_bottom"
-        itheima:title="设置骚扰拦截"
-        itheima:istoggle="true"
+        tuwq:title="设置骚扰拦截"
+        tuwq:istoggle="true"
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
@@ -37,16 +37,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_top"
         android:layout_marginTop="8dp"
-        itheima:title="归属地显示设置"
-        itheima:istoggle="true"
+        tuwq:title="归属地显示设置"
+        tuwq:istoggle="true"
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_bottom"
-        itheima:title="归属地风格设置"
-        itheima:istoggle="false"
+        tuwq:title="归属地风格设置"
+        tuwq:istoggle="false"
         ></com.tuwq.mobilesafe.view.SettingView>
 
 </LinearLayout>

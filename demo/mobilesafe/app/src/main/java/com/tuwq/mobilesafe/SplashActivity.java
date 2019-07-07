@@ -23,6 +23,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.tuwq.mobilesafe.utils.PackageUtil;
+import com.tuwq.mobilesafe.utils.SettingConstants;
+import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,9 +65,15 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                update();
+                //根据设置中心中保存的开关状态，设置是更新还是不更新的操作
+                boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SettingConstants.ISUPDATE, true);
+                if (b) {
+                    update();
+                }else{
+                    enterHome();
+                }
             }
-        }, 2000);
+        }, 1000);
         /*new Handler() {
             @Override
             public void handleMessage(Message msg) {
