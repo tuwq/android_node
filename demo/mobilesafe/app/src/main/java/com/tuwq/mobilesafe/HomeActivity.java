@@ -7,22 +7,20 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tuwq.mobilesafe.utils.SettingConstants;
+import com.tuwq.mobilesafe.utils.MD5Util;
+import com.tuwq.mobilesafe.utils.SystemConstants;
 import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
 
 public class HomeActivity extends Activity implements AdapterView.OnItemClickListener {
@@ -80,7 +78,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 // 问题：需要知道密码是否设置成功
                 // 当设置密码成功，保存密码，再次点击手机防盗条目的时候，获取保存的密码，如果有保存，弹出验证密码对话框，如果没有弹出设置密码对话框
                 String sp_psw = SharedPreferencesUtil.getString(
-                        getApplicationContext(), SettingConstants.SJFDPSW, "");
+                        getApplicationContext(), SystemConstants.SJFDPSW, "");
                 if (TextUtils.isEmpty(sp_psw)) {
                     showSetPassWordDialog();
                 } else {
@@ -113,10 +111,13 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     return;
                 }
                 //2.获取保存的密码，判断输入密码是否正确
-                String sp_psw = SharedPreferencesUtil.getString(getApplicationContext(), SettingConstants.SJFDPSW, "");
-                if (psw.equals(sp_psw)) {
+                String sp_psw = SharedPreferencesUtil.getString(getApplicationContext(), SystemConstants.SJFDPSW, "");
+                //因为md5加密不可逆，所以比较的时候，将输入的密码再次加密，让两个密文比较
+                if (MD5Util.msgToMD5(psw).equals(sp_psw)) {
                     Toast.makeText(getApplicationContext(), "密码正确", 0).show();
                     dialog.dismiss();
+                    //跳转到手机防盗设置向导的第一个界面
+                    enterLostFind();
                 }else{
                     Toast.makeText(getApplicationContext(), "密码错误", 0).show();
                 }
@@ -134,6 +135,22 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
         dialog = builder.create();
         dialog.show();
     }
+
+    /**
+     * 跳转到手机防盗设置向导第一个界面
+     */
+    protected void enterLostFind() {
+        //获取是否设置成功的标示，保存：跳转到手机防盗信息展示页面，没有保存：跳转到设置向导页面
+        boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SystemConstants.ISSJFDSETTING, false);
+        if (b) {
+            Intent intent = new Intent(this,LostFindActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(this,SetUp1Activity.class);
+            startActivity(intent);
+        }
+    }
+
 
     /**
      * 弹出设置密码对话框
@@ -165,7 +182,7 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     dialog.dismiss();
                     // 保存设置的密码，为再次点击手机防盗条目判断做准备
                     SharedPreferencesUtil.saveString(getApplicationContext(),
-                            SettingConstants.SJFDPSW, psw);
+                            SystemConstants.SJFDPSW,MD5Util.msgToMD5(psw));
                 } else {
                     Toast.makeText(getApplicationContext(), "两次密码不一致", 0)
                             .show();

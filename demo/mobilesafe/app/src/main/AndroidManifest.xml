@@ -3,17 +3,26 @@
     package="com.tuwq.mobilesafe"
     android:versionCode="1"
     android:versionName="1.0">
-
     <!--
-        package : 当前应用程序的包名，应用程序在系统中的唯一标示
-        versionCode ： 版本号
-        versionName ： 版本名称
-   -->
-
+         package : 当前应用程序的包名，应用程序在系统中的唯一标示
+         versionCode ： 版本号
+         versionName ： 版本名称
+    -->
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="17" />
     <!-- 联网的权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 写SD卡的权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读取电话信息的权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 接受手机重启的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 发送短信的权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 读取联系人的权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -32,6 +41,23 @@
         </activity>
         <activity android:name=".SettingActivity">
         </activity>
+        <activity android:name=".ContactActivity">
+        </activity>
+        <activity
+            android:name=".LostFindActivity"
+            android:label="@string/title_activity_lost_find" >
+        </activity>
+        <activity
+            android:name=".SetUp1Activity"
+            android:label="@string/title_activity_set_up1" >
+        </activity>
+        <activity
+            android:name="SetUp2Activity"
+            android:label="@string/title_activity_set_up2" >
+        </activity>
+        <activity
+            android:name="SetUp3Activity"
+            android:label="@string/title_activity_set_up2" >
+        </activity>
     </application>
-
 </manifest>

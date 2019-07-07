@@ -10,10 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +20,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.tuwq.mobilesafe.utils.PackageUtil;
-import com.tuwq.mobilesafe.utils.SettingConstants;
+import com.tuwq.mobilesafe.utils.SystemConstants;
 import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
 
 import org.json.JSONException;
@@ -66,7 +63,7 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 //根据设置中心中保存的开关状态，设置是更新还是不更新的操作
-                boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SettingConstants.ISUPDATE, true);
+                boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SystemConstants.ISUPDATE, true);
                 if (b) {
                     update();
                 }else{

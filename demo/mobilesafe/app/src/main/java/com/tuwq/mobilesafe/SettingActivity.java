@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.tuwq.mobilesafe.utils.SettingConstants;
+import com.tuwq.mobilesafe.utils.SystemConstants;
 import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
 import com.tuwq.mobilesafe.view.SettingView;
 
@@ -34,7 +34,7 @@ public class SettingActivity extends Activity {
      */
     private void update() {
         //再次进入界面的时候，获取保存的开关状态，根据保存的开关状态，设置界面开关操作
-        boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SettingConstants.ISUPDATE, true);
+        boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SystemConstants.ISUPDATE, true);
         mUpdate.setToggleOn(b);
         mUpdate.setOnClickListener(new OnClickListener() {
             @Override
@@ -46,7 +46,7 @@ public class SettingActivity extends Activity {
                 //获取开关状态，根据开关状态来实现开启和关闭的切换操作
                 mUpdate.toggle();
                 //开启关闭成功，保存开关状态
-                SharedPreferencesUtil.saveBoolean(getApplicationContext(), SettingConstants.ISUPDATE, mUpdate.istoggle());
+                SharedPreferencesUtil.saveBoolean(getApplicationContext(), SystemConstants.ISUPDATE, mUpdate.istoggle());
             }
         });
     }
