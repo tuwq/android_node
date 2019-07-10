@@ -11,4 +11,7 @@
     <string name="title_activity_set_up5">SetUp5Activity</string>
     <string name="title_activity_lost_find">LostFindActivity</string>
     <string name="title_activity_contact">ContactActivity</string>
+    <string name="sample_device_admin">手机卫士95</string>
+    <string name="sample_device_admin_description">手机卫士95，非常好用</string>
+    <string name="title_activity_black_number">BlackNumberActivity</string>
 </resources>

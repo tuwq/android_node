@@ -73,8 +73,8 @@ public class SetUp3Activity extends BaseActivity {
         }
         //如果输入的号码不为空，保存安全号码
         SharedPreferencesUtil.saveString(getApplicationContext(), SystemConstants.SAFENUMBER, safenumber);
-       /* Intent intent = new Intent(this, SetUp4Activity.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, SetUp4Activity.class);
+        startActivity(intent);
         return false;
     }
 }

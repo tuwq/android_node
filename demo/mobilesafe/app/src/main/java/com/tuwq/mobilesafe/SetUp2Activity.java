@@ -76,7 +76,6 @@ public class SetUp2Activity extends BaseActivity {
                     //修改的图片
                     mIsLock.setImageResource(R.drawable.unlock);
                 }
-
             }
         });
     }
