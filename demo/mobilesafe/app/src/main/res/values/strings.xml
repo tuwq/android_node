@@ -14,4 +14,6 @@
     <string name="sample_device_admin">手机卫士95</string>
     <string name="sample_device_admin_description">手机卫士95，非常好用</string>
     <string name="title_activity_black_number">BlackNumberActivity</string>
+    <string name="title_activity_black_number_add">BlackNumberAddActivity</string>
+    <string name="title_activity_black_number_update">BlackNumberUpdateActivity</string>
 </resources>

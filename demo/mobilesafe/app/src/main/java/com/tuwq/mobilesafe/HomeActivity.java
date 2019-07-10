@@ -86,6 +86,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                     showEnterPassWordDialog();
                 }
                 break;
+            case 1:
+                //骚扰拦截
+                Intent intent = new Intent(HomeActivity.this,BlackNumberActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

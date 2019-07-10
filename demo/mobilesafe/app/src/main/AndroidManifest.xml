@@ -75,6 +75,18 @@
             android:name="SetUp5Activity"
             android:label="@string/title_activity_set_up5" >
         </activity>
+        <activity
+            android:name=".BlackNumberActivity"
+            android:label="@string/title_activity_black_number" >
+        </activity>
+        <activity
+            android:name=".BlackNumberAddActivity"
+            android:label="@string/title_activity_black_number_add" >
+        </activity>
+        <activity
+            android:name=".BlackNumberUpdateActivity"
+            android:label="@string/title_activity_black_number_update" >
+        </activity>
         <receiver android:name=".receiver.BootCompleteReceiver" >
             <!--
                  intent-filter : 设置广播接受者要接受的广播事件
