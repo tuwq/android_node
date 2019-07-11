@@ -31,6 +31,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 大概位置的权限，真机中可以使用 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 读取通话记录权限 -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <!-- 写通话记录的权限 -->
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <!-- 振动的权限 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -118,5 +126,18 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+        <service android:name=".service.GPSService" >
+        </service>
+        <service android:name=".service.BlackNumberService" >
+        </service>
+        <service android:name=".service.AddressService"></service>
+        <activity
+            android:name=".CommonToolActivity"
+            android:label="@string/title_activity_common_tool" >
+        </activity>
+        <activity
+            android:name=".AddressActivity"
+            android:label="@string/title_activity_address" >
+        </activity>
     </application>
 </manifest>

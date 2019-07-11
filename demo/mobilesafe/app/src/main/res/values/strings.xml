@@ -16,4 +16,6 @@
     <string name="title_activity_black_number">BlackNumberActivity</string>
     <string name="title_activity_black_number_add">BlackNumberAddActivity</string>
     <string name="title_activity_black_number_update">BlackNumberUpdateActivity</string>
+    <string name="title_activity_common_tool">CommonToolActivity</string>
+    <string name="title_activity_address">AddressActivity</string>
 </resources>

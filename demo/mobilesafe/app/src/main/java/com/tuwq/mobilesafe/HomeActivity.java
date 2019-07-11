@@ -91,6 +91,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 Intent intent = new Intent(HomeActivity.this,BlackNumberActivity.class);
                 startActivity(intent);
                 break;
+            case 7:
+                //常用工具
+                Intent intent7 = new Intent(HomeActivity.this,CommonToolActivity.class);
+                startActivity(intent7);
+                break;
         }
     }
 
