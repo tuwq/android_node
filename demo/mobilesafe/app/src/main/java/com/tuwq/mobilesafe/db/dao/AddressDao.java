@@ -81,7 +81,6 @@ public class AddressDao {
 							location = location.substring(0, location.length()-2);
 						}
 					}
-					
 				}
 				break;
 			}

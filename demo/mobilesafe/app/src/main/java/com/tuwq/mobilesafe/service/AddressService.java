@@ -22,7 +22,6 @@ public class AddressService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -53,7 +52,6 @@ public class AddressService extends Service {
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:// 通话的状态
-
                     break;
             }
             super.onCallStateChanged(state, incomingNumber);
