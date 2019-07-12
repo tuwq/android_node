@@ -29,5 +29,8 @@ public interface SystemConstants {
 	 * 防盗保护是否开启的key
 	 */
 	public static final String PROTECTED = "protected";
-	
+	/**
+	 * 归属地背景样式的key
+	 */
+	public static final String ADDRESSBACKGROUND = "addressbackground";
 }

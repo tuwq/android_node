@@ -18,4 +18,6 @@
     <string name="title_activity_black_number_update">BlackNumberUpdateActivity</string>
     <string name="title_activity_common_tool">CommonToolActivity</string>
     <string name="title_activity_address">AddressActivity</string>
+    <string name="title_activity_common_number">CommonNumberActivity</string>
+    <string name="title_activity_app_manager">AppManagerActivity</string>
 </resources>

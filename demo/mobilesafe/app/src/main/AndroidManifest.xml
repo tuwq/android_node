@@ -143,5 +143,13 @@
             android:name=".AddressActivity"
             android:label="@string/title_activity_address" >
         </activity>
+        <activity
+            android:name=".CommonNumberActivity"
+            android:label="@string/title_activity_common_number" >
+        </activity>
+        <activity
+            android:name=".AppManagerActivity"
+            android:label="@string/title_activity_app_manager" >
+        </activity>
     </application>
 </manifest>

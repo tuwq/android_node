@@ -8,12 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tuwq.mobilesafe.R;
+import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
+import com.tuwq.mobilesafe.utils.SystemConstants;
 
 /**
  * 自定义dialog
@@ -26,6 +30,7 @@ public class MyDialog extends Dialog {
         super(context, R.style.AddressStyle);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,18 @@ public class MyDialog extends Dialog {
 
         mListView = (ListView) findViewById(R.id.mydialog_lv_styles);
         mListView.setAdapter(new Myadapter());
+
+        //设置listview的条目条目点击事件
+        mListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                //隐藏对话框
+                dismiss();
+                //保存被点击的条目对应的图片
+                SharedPreferencesUtil.saveInt(getContext(), SystemConstants.ADDRESSBACKGROUND, icons[position]);
+            }
+        });
 
         //1.样式问题;2.dialog显示在底部
         //2.显示在底部，在窗口的底部显示的
@@ -70,9 +87,16 @@ public class MyDialog extends Dialog {
             mIcon.setImageResource(icons[position]);
             mTitle.setText(titles[position]);
 
+            //获取保存的图片
+            int sp_bgid = SharedPreferencesUtil.getInt(getContext(), SystemConstants.ADDRESSBACKGROUND, R.drawable.toast_address_normal);
+            //用保存的图片和每个条目的图片比较，一致，表示条目被选中，显示选中图片
+            if (icons[position] == sp_bgid) {
+                mIsSelected.setVisibility(View.VISIBLE);
+            }else{
+                mIsSelected.setVisibility(View.GONE);
+            }
             return view;
         }
-
 
         @Override
         public Object getItem(int position) {

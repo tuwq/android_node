@@ -55,6 +55,7 @@ public class SplashActivity extends Activity {
 
         //拷贝数据库
         copyDB("address.db");
+        copyDB("commonnum.db");
     }
 
     /**

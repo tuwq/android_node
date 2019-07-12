@@ -9,6 +9,8 @@ import android.view.View.OnTouchListener;
 import android.widget.TextView;
 
 import com.tuwq.mobilesafe.R;
+import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
+import com.tuwq.mobilesafe.utils.SystemConstants;
 
 /**
  * 自定义Toast
@@ -28,11 +30,9 @@ public class CustomToast implements OnTouchListener {
 
     /**
      * 显示自定义的toast
-     *
-     * @param address 要显示的号码归属地 2016-10-16 下午5:11:00
+     * @param address
      */
     public void showToast(String address){
-
         //将一个veiw对象添加到窗口中显示就可以了
         //1.得到窗口的管理者
         windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
@@ -42,6 +42,10 @@ public class CustomToast implements OnTouchListener {
         TextView mAddress = (TextView) view.findViewById(R.id.custom_tv_address);
         //将号码归属地设置给textview显示
         mAddress.setText(address);
+
+        //获取保存的背景的样式，设置给自定义的toast显示
+        int bg_id = SharedPreferencesUtil.getInt(mContext, SystemConstants.ADDRESSBACKGROUND, R.drawable.toast_address_normal);
+        view.setBackgroundResource(bg_id);
 
         //LayoutParams : 使用代码设置控件的属性，效果跟布局文件中控件属性是一样的效果
         //LayoutParams使用规则：view对象添加到那个父控件，就使用那个父控件的LayoutParams
@@ -67,7 +71,7 @@ public class CustomToast implements OnTouchListener {
 
     /**
      * 控件的触摸操作
-     * @param v 摸的控件的view对象
+     * @param v 触摸的控件的view对象
      * @param event 触摸的事件
      */
     @Override
