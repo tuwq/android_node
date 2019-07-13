@@ -18,8 +18,6 @@ import android.provider.ContactsContract;
 
 /**
  * 获取系统联系人和联系人头像
- *
- *2016-10-11  上午9:37:50
  */
 public class ContactsEngine {
 

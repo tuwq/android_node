@@ -96,6 +96,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 Intent intent2 = new Intent(HomeActivity.this,AppManagerActivity.class);
                 startActivity(intent2);
                 break;
+            case 3:
+                //进程管理
+                Intent intent3 = new Intent(HomeActivity.this,ProcessManagerActivity.class);
+                startActivity(intent3);
+                break;
             case 7:
                 //常用工具
                 Intent intent7 = new Intent(HomeActivity.this,CommonToolActivity.class);

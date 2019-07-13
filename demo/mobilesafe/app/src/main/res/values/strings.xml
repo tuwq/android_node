@@ -20,4 +20,5 @@
     <string name="title_activity_address">AddressActivity</string>
     <string name="title_activity_common_number">CommonNumberActivity</string>
     <string name="title_activity_app_manager">AppManagerActivity</string>
+    <string name="title_activity_process_manager">ProcessManagerActivity</string>
 </resources>
