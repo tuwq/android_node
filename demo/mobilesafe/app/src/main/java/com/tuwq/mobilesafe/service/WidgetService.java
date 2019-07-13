@@ -67,9 +67,9 @@ public class WidgetService extends Service {
 
         //type : 闹铃类型
         //RTC ：使用硬件的时间，发送闹铃不通过手机提醒
-        // RTC_WAKEUP : 使用硬件的时间，发送闹铃通过手机提醒
-        //ELAPSED_REALTIME : 使用真实的时间，发送闹铃不通过手机提醒
-        //ELAPSED_REALTIME_WAKEUP : 使用真实的时间，发送闹铃通过手机提醒
+        //  RTC_WAKEUP : 使用硬件的时间，发送闹铃通过手机提醒
+        //  ELAPSED_REALTIME : 使用真实的时间，发送闹铃不通过手机提醒
+        //  ELAPSED_REALTIME_WAKEUP : 使用真实的时间，发送闹铃通过手机提醒
         //triggerAtMillis : 当前的时间
         //intervalMillis : 间隔时间
         //operation : 执行的操作,PendingIntent:延迟意图，类似点击事件的使用方式，只有触发条件生效，才会执行intent操作

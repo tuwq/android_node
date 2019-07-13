@@ -154,5 +154,17 @@
             android:name=".ProcessManagerActivity"
             android:label="@string/title_activity_process_manager" >
         </activity>
+        <service android:name=".service.ScreenOffService" >
+        </service>
+        <service android:name=".service.WidgetService" >
+        </service>
+        <!-- 桌面小控件 -->
+        <receiver android:name=".receiver.WidgetReceiver" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/example_appwidget_info" />
+        </receiver>
     </application>
 </manifest>

@@ -6,4 +6,5 @@
 
     <color name="lostfindaginbgpressedcolor">#9CFFCE</color>
     <color name="lostfindaginbgnormalcolor">#FFFFFF</color>
+    <color name="textColorPrimaryDark">#ff000000</color>
 </resources>
