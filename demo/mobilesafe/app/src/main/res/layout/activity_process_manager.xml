@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +24,6 @@
             android:onClick="clear"
             />
     </FrameLayout>
-
     <com.tuwq.mobilesafe.view.CustomProgressBar
         android:id="@+id/process_cpb_count"
         android:layout_width="match_parent"
@@ -99,9 +97,8 @@
                     android:textSize="18sp"
                     android:layout_margin="8dp"
                     />
-
                 <com.tuwq.mobilesafe.view.SettingView
-                    android:id="@+id/setting_sv_update"
+                    android:id="@+id/porcess_sv_isshowsystem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_setting_item_top"
@@ -110,16 +107,14 @@
                     tuwq:title="显示系统进程"
                     tuwq:istoggle="true"
                     ></com.tuwq.mobilesafe.view.SettingView>
-
                 <com.tuwq.mobilesafe.view.SettingView
-                    android:id="@+id/setting_sv_blacknumber"
+                    android:id="@+id/process_sv_screenoff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selector_setting_item_bottom"
                     tuwq:title="锁屏清理进程"
                     tuwq:istoggle="true"
                     ></com.tuwq.mobilesafe.view.SettingView>
-
             </LinearLayout>
         </SlidingDrawer>
     </RelativeLayout>
