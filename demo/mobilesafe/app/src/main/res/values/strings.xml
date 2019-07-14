@@ -22,4 +22,9 @@
     <string name="title_activity_app_manager">AppManagerActivity</string>
     <string name="title_activity_process_manager">ProcessManagerActivity</string>
     <string name="title_activity_app_lock">AppLockActivity</string>
+    <string name="title_activity_app_un_lock">AppUnLockActivity</string>
+    <string name="accessibility_service_label">手机卫士95</string>
+    <string name="accessibility_service_description">手机卫士程序锁时刻保护您的应用的安全</string>
+    <string name="title_activity_traffic">TrafficActivity</string>
+    <string name="title_activity_clear_cache">ClearCacheActivity</string>
 </resources>

@@ -61,6 +61,7 @@
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_applockservice1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_middle"
@@ -69,6 +70,7 @@
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_applockservice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_bottom"

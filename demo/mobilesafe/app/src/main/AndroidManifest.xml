@@ -46,6 +46,10 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <!-- 写短信的权限 -->
     <uses-permission android:name="android.permission.WRITE_SMS" />
+    <!-- 获取任务栈信息 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 获取应用程序的缓存等信息的权限 -->
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
 
     <application
         android:allowBackup="true"
@@ -181,6 +185,22 @@
         <activity
             android:name=".AppLockActivity"
             android:label="@string/title_activity_process_manager" >
+        </activity>
+        <service android:name=".service.AppLockService1" >
+        </service>
+        <activity
+            android:name=".AppUnLockActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_app_un_lock"
+            android:launchMode="singleInstance" >
+            <!--
+              launchMode : 启动模式
+              		standard ： 标准的启动默认
+              		singleTop ： 如何activity在栈顶，直接使用
+              		singleTask ： 如果activity在任务栈中，把之上的activity删除，将当前的activity置顶
+              		singleInstance : 给activity设置单独的任务栈
+              excludeFromRecents : 是否从最新列表中移除activity所在的应用，true:移除，false:不移除,只有设置该属性的activity执行了，属性才会生效
+            -->
         </activity>
     </application>
 </manifest>

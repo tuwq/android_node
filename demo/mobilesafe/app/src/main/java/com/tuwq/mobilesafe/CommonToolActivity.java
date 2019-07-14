@@ -11,6 +11,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tuwq.mobilesafe.bean.SMSInfo;
 import com.tuwq.mobilesafe.engine.SmsEngine;
+import com.tuwq.mobilesafe.service.AppLockService1;
+import com.tuwq.mobilesafe.utils.ServiceUtil;
 import com.tuwq.mobilesafe.view.SettingView;
 
 import android.net.Uri;
@@ -36,6 +38,10 @@ public class CommonToolActivity extends Activity implements OnClickListener{
     private SettingView mReadSMS;
     private SettingView mWirteSMS;
     private SettingView mApplock;
+    private SettingView mAppLockService1;
+    private SettingView mAppLockService2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,8 @@ public class CommonToolActivity extends Activity implements OnClickListener{
         mReadSMS = (SettingView) findViewById(R.id.commontool_sv_readsms);
         mWirteSMS = (SettingView) findViewById(R.id.commontool_sv_writesms);
         mApplock = (SettingView) findViewById(R.id.commontool_sv_applock);
+        mAppLockService1 = (SettingView) findViewById(R.id.commontool_sv_applockservice1);
+        mAppLockService2 = (SettingView) findViewById(R.id.commontool_sv_applockservice2);
 
         //设置点击事件
         mAddress.setOnClickListener(this);
@@ -64,6 +72,10 @@ public class CommonToolActivity extends Activity implements OnClickListener{
 
         //程序锁的点击事件
         mApplock.setOnClickListener(this);
+
+        // 设置开启电子狗服务的点击事件
+        mAppLockService1.setOnClickListener(this);
+        mAppLockService2.setOnClickListener(this);
     }
 
     @Override
@@ -131,6 +143,43 @@ public class CommonToolActivity extends Activity implements OnClickListener{
                 Intent intent3 = new Intent(this,AppLockActivity.class);
                 startActivity(intent3);
                 break;
+            case R.id.commontool_sv_applockservice1:
+                Intent intent4 = new Intent(this, AppLockService1.class);
+                if (ServiceUtil.isServiceRunning(this,
+                        "com.tuwq.mobilesafe.service.AppLockService1")) {
+                    // 开启 -> 点击关闭服务
+                    stopService(intent4);
+                } else {
+                    // 关闭 -> 点击开启服务
+                    startService(intent4);
+                }
+                mAppLockService1.toggle();
+                break;
+            case R.id.commontool_sv_applockservice2:
+                //跳转到系统的辅助功能界面
+                /**
+                 * I/ActivityManager(1008):
+                 * START {
+                 * act=android.settings.ACCESSIBILITY_SETTINGS
+                 * cmp=com.android.settings/.Settings$AccessibilitySettingsActivity u=0
+                 * } from pid 1300
+                 */
+                Intent intent5 = new Intent();
+                intent5.setAction("android.settings.ACCESSIBILITY_SETTINGS");
+                startActivity(intent5);
+                break;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        boolean b = ServiceUtil.isServiceRunning(this,
+                "com.tuwq.mobilesafe.service.AppLockService1");
+        mAppLockService1.setToggleOn(b);
+        //回显电子狗服务2
+        boolean appLockservice2 = ServiceUtil.isServiceRunning(this,
+                "com.tuwq.mobilesafe.service.AppLockService2");
+        mAppLockService2.setToggleOn(appLockservice2);
     }
 }
