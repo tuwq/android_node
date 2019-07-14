@@ -20,6 +20,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.tuwq.mobilesafe.service.ProtectedService;
 import com.tuwq.mobilesafe.utils.PackageUtil;
 import com.tuwq.mobilesafe.utils.SystemConstants;
 import com.tuwq.mobilesafe.utils.SharedPreferencesUtil;
@@ -56,11 +57,14 @@ public class SplashActivity extends Activity {
         //拷贝数据库
         copyDB("address.db");
         copyDB("commonnum.db");
+
+        //开启守护进程
+        startService(new Intent(this, ProtectedService.class));
     }
 
     /**
      * 拷贝数据库的方法
-     *@param string
+     *@param dbName
      */
     private void copyDB(String dbName) {
         //判断如果数据库已经拷贝成功，不需要再次拷贝

@@ -1,0 +1,119 @@
+package com.tuwq.mobilesafe.db.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.SystemClock;
+
+import com.tuwq.mobilesafe.db.AppLockConstants;
+import com.tuwq.mobilesafe.db.AppLockOpenHelper;
+
+/**
+ * 黑名单数据库的操作
+ *
+ * 2016-10-14 上午9:30:39
+ */
+public class AppLockDao {
+
+    //清华同方面试题：同时操作数据库如何解决：Dao操作同步锁+OpenHelper单例模式（可选）
+    private AppLockOpenHelper appLockOpenHelper;
+
+    public AppLockDao(Context context) {
+        appLockOpenHelper = new AppLockOpenHelper(context);
+    }
+
+    /**
+     * 添加数据的操作
+     * @param packageName 包名
+     */
+    public boolean add(String packageName) {
+        //参数：保证一个
+        //synchronized (AppLockDao.class) {
+        SQLiteDatabase database = appLockOpenHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        // key:数据库表中的字段名
+        // values:添加的数据
+        values.put(AppLockConstants.PACKAGENAME, packageName);
+        /**
+         * arg1: 表名
+         * arg2: Sqlite数据库不能直接添加null操作，如果添加数据是null，sqlite数据库会在添加数据相应的列中设置为null
+         * arg3: 添加的数据
+         */
+        long insert = database.insert(AppLockConstants.TABLE_NAME, null,
+                values);
+
+        // 判断是否添加成功的操作
+        return insert != -1;
+        //}
+    }
+
+    /**
+     * 程序锁解锁操作
+     * @param packageName
+     */
+    public boolean delete(String packageName) {
+        SQLiteDatabase database = appLockOpenHelper.getWritableDatabase();
+        // whereClause : 查询条件
+        // whereArgs : 查询条件的参数（具体的值）
+        int delete = database.delete(AppLockConstants.TABLE_NAME,
+                AppLockConstants.PACKAGENAME + "=?",
+                new String[] { packageName });
+
+        System.out.println(delete);
+
+        return delete != 0;
+    }
+
+    /**
+     * 程序锁判断是否枷锁，判断数据库是否有相应的报名
+     * @param packageName
+     */
+    public boolean queryMode(String packageName) {
+        //数据库是否存在数据
+        boolean isHave = false;
+
+        SQLiteDatabase database = appLockOpenHelper.getReadableDatabase();
+        // columns :设置查询哪一列的数据
+        // selection : 查询条件
+        // selectionArgs : 查询条件的参数
+        // groupBy : 分组
+        // having : 去重
+        // orderBy : 排序
+        Cursor cursor = database.query(AppLockConstants.TABLE_NAME,
+                new String[] { AppLockConstants.PACKAGENAME },
+                AppLockConstants.PACKAGENAME + "=?",
+                new String[] { packageName }, null, null, null);
+        if (cursor.moveToNext()) {
+            isHave = true;
+        }
+        // 关闭
+        cursor.close();
+        database.close();
+        return isHave;
+    }
+
+    /**
+     * 查询全部数据的操作
+     */
+    public List<String> queryAll() {
+        List<String> list = new ArrayList<String>();
+
+        SQLiteDatabase database = appLockOpenHelper.getReadableDatabase();
+        Cursor cursor = database.query(AppLockConstants.TABLE_NAME,
+                new String[] { AppLockConstants.PACKAGENAME}, null, null, null, null,
+                null);
+        while (cursor.moveToNext()) {
+            String packageName = cursor.getString(0);
+            // 将bean类存放到集合中，方便listview显示
+            list.add(packageName);
+        }
+        // 关闭数据库
+        cursor.close();
+        database.close();
+        return list;
+    }
+}

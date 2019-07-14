@@ -32,6 +32,7 @@
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_readsms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_top"
@@ -41,6 +42,7 @@
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_writesms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_bottom"
@@ -49,6 +51,7 @@
         ></com.tuwq.mobilesafe.view.SettingView>
 
     <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_applock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_setting_item_top"
