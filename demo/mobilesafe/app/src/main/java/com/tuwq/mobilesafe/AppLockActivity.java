@@ -218,7 +218,6 @@ public class AppLockActivity extends Activity implements OnClickListener{
 
     private class Myadapter extends BaseAdapter{
         //3.根据不同情况，从不同的集合中获取数据展示数据
-
         /**标示是已加锁操作还是未加锁操作   true:已加锁    false:未加锁**/
         private boolean mIsLock;
         private TranslateAnimation leftToRight;
@@ -247,7 +246,6 @@ public class AppLockActivity extends Activity implements OnClickListener{
             }else{
                 return unLocks.size();
             }
-
         }
 
         @Override
@@ -299,7 +297,7 @@ public class AppLockActivity extends Activity implements OnClickListener{
                 public void onClick(View v) {
                     //自己不能给自己加锁，因为加锁的操作是由手机卫士来实现的
                     if (appInfo.packageName.equals(getPackageName())) {
-                        Toast.makeText(getApplicationContext(), "自己不能给自己加锁", 0).show();
+                        Toast.makeText(getApplicationContext(), "自己不能给自己加锁", Toast.LENGTH_SHORT).show();
                         //不能执行其他操作
                         return;
                     }else{
