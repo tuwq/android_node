@@ -186,6 +186,7 @@
             android:name=".AppLockActivity"
             android:label="@string/title_activity_process_manager" >
         </activity>
+        <!-- 应用加解锁 -->
         <service android:name=".service.AppLockService1" >
         </service>
         <activity
@@ -202,5 +203,21 @@
               excludeFromRecents : 是否从最新列表中移除activity所在的应用，true:移除，false:不移除,只有设置该属性的activity执行了，属性才会生效
             -->
         </activity>
+        <!-- 辅助功能 -->
+        <!--
+                                       辅助功能的服务
+             permission : 给服务设置单独使用的权限，其他组件是不能使用这个权限
+        -->
+        <service
+            android:name=".service.AppLockService2"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
     </application>
 </manifest>
