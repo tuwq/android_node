@@ -10,9 +10,11 @@ public class AppInfo {
 	public long size;
 	public boolean isSystem;
 	public boolean isSD;
-	
+
+	public int uid;
+
 	public AppInfo(String packageName, String name, Drawable icon, long size,
-			boolean isSystem, boolean isSD) {
+				   boolean isSystem, boolean isSD, int uid) {
 		super();
 		this.packageName = packageName;
 		this.name = name;
@@ -20,6 +22,7 @@ public class AppInfo {
 		this.size = size;
 		this.isSystem = isSystem;
 		this.isSD = isSD;
+		this.uid = uid;
 	}
-	
+
 }

@@ -219,5 +219,13 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_service_config" />
         </service>
+        <activity
+            android:name=".TrafficActivity"
+            android:label="@string/title_activity_traffic" >
+        </activity>
+        <activity
+            android:name=".ClearCacheActivity"
+            android:label="@string/title_activity_clear_cache" >
+        </activity>
     </application>
 </manifest>

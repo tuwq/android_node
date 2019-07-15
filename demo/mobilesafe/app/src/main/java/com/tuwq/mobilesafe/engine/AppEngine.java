@@ -58,8 +58,9 @@ public class AppEngine {
                 //安装手机内存中
                 isSD = false;
             }
+            int uid = applicationInfo.uid;//获取应用程序的uid
             //将信息保存到bean类中
-            AppInfo appInfo = new AppInfo(packageName, name, icon, size, isSystem, isSD);
+            AppInfo appInfo = new AppInfo(packageName, name, icon, size, isSystem, isSD, uid);
             //将bean类保存到list集合中
             list.add(appInfo);
         }
