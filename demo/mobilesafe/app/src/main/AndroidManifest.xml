@@ -50,6 +50,8 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- 获取应用程序的缓存等信息的权限 -->
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+    <!-- 清理app缓存的权限 -->
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
 
     <application
         android:allowBackup="true"
@@ -226,6 +228,10 @@
         <activity
             android:name=".ClearCacheActivity"
             android:label="@string/title_activity_clear_cache" >
+        </activity>
+        <activity
+            android:name=".AntiVirusActivity"
+            android:label="@string/title_activity_anti_virus" >
         </activity>
     </application>
 </manifest>

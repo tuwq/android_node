@@ -106,6 +106,11 @@ public class HomeActivity extends Activity implements AdapterView.OnItemClickLis
                 Intent intent4 = new Intent(HomeActivity.this,TrafficActivity.class);
                 startActivity(intent4);
                 break;
+            case 5:
+                //手机杀毒
+                Intent intent5 = new Intent(HomeActivity.this,AntiVirusActivity.class);
+                startActivity(intent5);
+                break;
             case 6:
                 //缓存清理
                 Intent intent6 = new Intent(HomeActivity.this,ClearCacheActivity.class);

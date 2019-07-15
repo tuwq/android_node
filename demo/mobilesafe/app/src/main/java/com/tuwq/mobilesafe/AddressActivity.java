@@ -36,7 +36,7 @@ public class AddressActivity extends Activity {
         mNumber = (EditText) findViewById(R.id.address_et_number);
         mAddress = (TextView) findViewById(R.id.address_tv_address);
 
-        // 监听输入框时时输入内容的操作
+        // 监听输入框时时输入内容的操作onPreExecute
         mNumber.addTextChangedListener(new TextWatcher() {
             // 在输入的内容改变的时候调用
             @Override
