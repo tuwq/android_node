@@ -14,6 +14,7 @@
         android:background="#429ED6" >
         <!-- 重新扫描的布局 -->
         <LinearLayout
+            android:id="@+id/anti_ll_againscan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -37,6 +38,7 @@
         </LinearLayout>
         <!-- 进度条的布局 -->
         <LinearLayout
+            android:id="@+id/anti_ll_scan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -53,6 +55,7 @@
                 custom:arc_bottom_text_size="15sp"
                 custom:arc_stroke_width="10dp"
                 />
+
             <TextView
                 android:id="@+id/anti_tv_packageName"
                 android:layout_width="wrap_content"
@@ -60,6 +63,26 @@
                 android:text="com.android.mms"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/anti_ll_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+            <ImageView
+                android:id="@+id/anti_iv_left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                />
+            <ImageView
+                android:id="@+id/anti_iv_right"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                />
         </LinearLayout>
     </RelativeLayout>
     <ListView

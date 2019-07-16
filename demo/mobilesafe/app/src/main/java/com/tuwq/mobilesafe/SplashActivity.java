@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -57,9 +59,34 @@ public class SplashActivity extends Activity {
         //拷贝数据库
         copyDB("address.db");
         copyDB("commonnum.db");
+        copyDB("antivirus.db");
 
         //开启守护进程
         startService(new Intent(this, ProtectedService.class));
+        createshortcut();
+    }
+
+    /**
+     * 创建快捷方式
+     */
+    private void createshortcut() {
+        //判断快捷方式是否创建
+        boolean b = SharedPreferencesUtil.getBoolean(getApplicationContext(), SystemConstants.SHORTCUT, false);
+        if (!b) {
+            Intent intent = new Intent();
+            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+            //设置快捷方式的名称
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机卫士95");
+            //设置快捷方式的图标
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap);
+            //设置快捷方式的操作
+            Intent enter = new Intent(this,SplashActivity.class);
+            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, enter);
+            sendBroadcast(intent);
+
+            SharedPreferencesUtil.saveBoolean(getApplicationContext(), SystemConstants.SHORTCUT, true);
+        }
     }
 
     /**

@@ -37,4 +37,8 @@ public interface SystemConstants {
 	 * 进程管理隐藏显示系统进程的key
 	 */
 	public static final String PROCESSISSHOWSYSTEM = "processisshowsystem";
+	/**
+	 * 快捷方式的key
+	 */
+	public static final String SHORTCUT = "shortcut";
 }
