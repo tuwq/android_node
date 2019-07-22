@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyToggleButton">
+        <!-- 设置快关背景 -->
+        <attr name="backgrounid" format="reference" />  <!-- reference : 图片引用的类型 -->
+        <!-- 按钮的图片 -->
+        <attr name="iconid" format="reference" />
+        <!-- 是否开关 -->
+        <attr name="istoggle" format="boolean"/>
+    </declare-styleable>
+</resources>

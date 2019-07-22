@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tuwq="http://schemas.android.com/apk/res/com.tuwq.togglebutton"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.tuwq.togglebutton.view.MyToggleButton
+        android:id="@+id/mytogglebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tuwq:backgrounid="@drawable/slide_background2"
+        tuwq:iconid="@drawable/slide_icon2"
+        tuwq:istoggle="true"
+        ></com.tuwq.togglebutton.view.MyToggleButton>
+
+</RelativeLayout>
