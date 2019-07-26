@@ -9,13 +9,15 @@
         android:layout_marginLeft="20dp"
         android:layout_gravity="center_vertical"
         >
-        <ImageView 
+        <ImageView
+            android:id="@+id/arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/arrow"
             android:layout_centerInParent="true"
             />
-        <ProgressBar 
+        <ProgressBar
+            android:id="@+id/pb"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"
@@ -30,7 +32,8 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical"
         >
-        <TextView 
+        <TextView
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下拉刷新"
