@@ -43,7 +43,7 @@ public class HomeActivity extends SlidingFragmentActivity {
         // 设置侧拉菜单宽度,单位px
         // slidingMenu.setBehindWidth(200);
         // 设置菜单内容页的宽度
-        slidingMenu.setBehindOffset(220);
+        slidingMenu.setBehindOffset(200);
         // 设置分割线的样式
         slidingMenu.setShadowDrawable(R.drawable.shape_slidingmenu_divirer);
         slidingMenu.setShadowWidth(5);

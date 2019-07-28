@@ -12,6 +12,7 @@ import android.view.ViewGroup;
  */
 public abstract class BaseFragment extends Fragment {
     public Activity activity;
+    public View view;
 
     /**
      * 初始化数据
@@ -35,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //因为fragment加载布局的操作是否调用onCreateView方法实现的，不是通过initView方法实现的
-        View view = initView();
+        view = initView();
         return view;
     }
 
