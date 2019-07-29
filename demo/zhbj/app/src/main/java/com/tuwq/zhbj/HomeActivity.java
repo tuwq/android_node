@@ -82,4 +82,13 @@ public class HomeActivity extends SlidingFragmentActivity {
         MenuFragment fragment = (MenuFragment) getSupportFragmentManager().findFragmentByTag("MENU");
         return fragment;
     }
+
+    /**
+     * 获取添加的HomeFragment的对象
+     *@return
+     */
+    public HomeFragment getHomeFragment(){
+        HomeFragment fragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag("HOME");
+        return fragment;
+    }
 }

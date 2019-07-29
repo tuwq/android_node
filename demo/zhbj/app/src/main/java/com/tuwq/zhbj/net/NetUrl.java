@@ -5,7 +5,7 @@ package com.tuwq.zhbj.net;
  */
 public class NetUrl {
 
-    private static String SERVERURL = "http://10.0.2.2:8080/zhbj";
+    public static String SERVERURL = "http://10.0.2.2:8080/zhbj";
     //新闻中心
     public static final String NEWSCENTERURL=SERVERURL+"/categories.json";
     //组图

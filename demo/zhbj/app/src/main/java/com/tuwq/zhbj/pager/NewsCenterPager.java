@@ -15,9 +15,14 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.tuwq.zhbj.HomeActivity;
+import com.tuwq.zhbj.base.BaseMenupager;
 import com.tuwq.zhbj.base.BasePager;
 import com.tuwq.zhbj.bean.NewsCenterInfo;
 import com.tuwq.zhbj.net.NetUrl;
+import com.tuwq.zhbj.pager.menu.MenuActionPager;
+import com.tuwq.zhbj.pager.menu.MenuNewsCenterPager;
+import com.tuwq.zhbj.pager.menu.MenuPhotosPager;
+import com.tuwq.zhbj.pager.menu.MenuSpecialPager;
 import com.tuwq.zhbj.tool.Constants;
 import com.tuwq.zhbj.tool.SharedPreferencesTool;
 
@@ -32,6 +37,7 @@ import java.util.List;
 public class NewsCenterPager extends BasePager {
 
     private List<String> titles;
+    private List<BaseMenupager> list;
 
     public NewsCenterPager(Activity activity) {
         super(activity);
@@ -78,7 +84,6 @@ public class NewsCenterPager extends BasePager {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-
                 //1.请求服务器成功，将服务器返回的数据，保存到本地
                 SharedPreferencesTool.saveString(activity, Constants.NEWSCENTERMSG, result);
                 //3.加载解析获取最新数据，将原来的缓存数据覆盖
@@ -119,5 +124,46 @@ public class NewsCenterPager extends BasePager {
         }
         //将数据传递给MenuFragment
         ((HomeActivity)activity).getMenuFragment().initList(titles);
+
+        //创建菜单页对应的界面，将菜单页条目对应的界面添加到集合中，方便切换操作
+        list = new ArrayList<BaseMenupager>();
+        list.clear();
+        list.add(new MenuNewsCenterPager(activity,newsCenterInfo.data.get(0)));
+        list.add(new MenuSpecialPager(activity));
+        list.add(new MenuPhotosPager(activity));
+        list.add(new MenuActionPager(activity));
+
+        //设置默认显示的界面为新闻界面
+        switchPage(0);
+    }
+
+
+
+    /**
+     * 新闻中心切换新闻，专题，组图，互动界面的操作
+     * position ： 切换界面的索引(点击MenuFragment的条目的索引)
+     *@param position
+     */
+    public void switchPage(int position){
+        //1.切换标题
+        mTitle.setText(titles.get(position));
+        //2.切换内容显示界面
+        //根据条目的索引获取对应的界面
+        BaseMenupager baseMenupager = list.get(position);
+        View rootView = baseMenupager.rootView;//获取界面的view对象
+        //先将之前保存的界面清除，在添加新的界面
+        mContent.removeAllViews();//清除控件中所有的内容
+        //添加新的界面在显示内容中显示
+        mContent.addView(rootView);
+        //界面显示出来之后，还有给界面填充显示的数据
+        baseMenupager.initData();
+
+        //如果切换到组图界面，显示组图的按钮,其他界面隐藏
+        //instanceof : 判断获取的界面是否是MenuPhotosPager组图界面
+        if (baseMenupager instanceof MenuPhotosPager) {
+            mImage.setVisibility(View.VISIBLE);
+        }else{
+            mImage.setVisibility(View.GONE);
+        }
     }
 }

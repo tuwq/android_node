@@ -2,10 +2,13 @@ package com.tuwq.zhbj.base;
 
 import android.app.Activity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.tuwq.zhbj.HomeActivity;
 import com.tuwq.zhbj.R;
 
 /**
@@ -18,9 +21,13 @@ public class BasePager {
     public TextView mTitle;
     public FrameLayout mContent;
     public ImageButton mMenu;
+    public SlidingMenu slidingMenu;
+    public ImageButton mImage;
 
     public BasePager(Activity activity){
         this.activity = activity;
+        //获取侧拉菜单
+        slidingMenu = ((HomeActivity)activity).getSlidingMenu();
         // 在new出来的界面的时候，就加载界面
         view = initView();
     }
@@ -37,6 +44,15 @@ public class BasePager {
         mTitle = (TextView) view.findViewById(R.id.titlebar_tv_title);
         mContent = (FrameLayout) view.findViewById(R.id.basepager_fl_content);
         mMenu = (ImageButton) view.findViewById(R.id.titlebar_btn_menu);
+        mImage = (ImageButton) view.findViewById(R.id.titlebar_btn_image);
+
+        //设置侧拉菜单按钮的点击事件，实现侧拉菜单的打开关闭操作
+        mMenu.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slidingMenu.toggle();
+            }
+        });
 
         return view;
     }

@@ -152,4 +152,12 @@ public class HomeFragment extends BaseFragment {
             container.removeView((View)object);
         }
     }
+
+    /**
+     * 获取NewsCenterPager界面对象的
+     *@return
+     */
+    public NewsCenterPager getNewsCenterpager(){
+        return (NewsCenterPager) list.get(1);
+    }
 }
