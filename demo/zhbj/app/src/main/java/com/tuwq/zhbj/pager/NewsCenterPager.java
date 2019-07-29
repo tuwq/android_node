@@ -7,8 +7,18 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.tuwq.zhbj.HomeActivity;
 import com.tuwq.zhbj.base.BasePager;
+import com.tuwq.zhbj.bean.NewsCenterInfo;
+import com.tuwq.zhbj.net.NetUrl;
+import com.tuwq.zhbj.tool.Constants;
 import com.tuwq.zhbj.tool.SharedPreferencesTool;
 
 import java.util.ArrayList;
@@ -48,19 +58,19 @@ public class NewsCenterPager extends BasePager {
 
         //请求网络，获取服务器回传的数据
         //2.再次请求服务的时候，查看是否缓存数据，有缓存数据，加载显示缓存数据，没有缓存数据，直接请求网络获取数据
-       /* String sp_msg = SharedPreferencesTool.getString(activity, Constants.NEWSCENTERMSG, "");
+        String sp_msg = SharedPreferencesTool.getString(activity, Constants.NEWSCENTERMSG, "");
         if (!TextUtils.isEmpty(sp_msg)) {
             //加载显示缓存数据
             processJSON(sp_msg);
         }
-        getData();*/
+        getData();
 
         super.initData();
     }
 
     /**
      * 请求服务器获取数据
-     *//*
+     */
     private void getData() {
         //1.联网权限      2.使用xutils
         HttpUtils httpUtils = new HttpUtils();
@@ -81,10 +91,10 @@ public class NewsCenterPager extends BasePager {
         });
     }
 
-    *//**
+    /**
      * 解析json数据
-     *@param sp_msg
-     *//*
+     *@param json
+     */
     private void processJSON(String json) {
         Gson gson = new Gson();
         NewsCenterInfo newsCenterInfo = gson.fromJson(json, NewsCenterInfo.class);
@@ -96,10 +106,10 @@ public class NewsCenterPager extends BasePager {
         setMenuFragmentMsg(newsCenterInfo);
     }
 
-    *//**
+    /**
      * 获取menufragment所需的数据，传递给menufragment进行显示
      *@param newsCenterInfo
-     *//*
+     */
     private void setMenuFragmentMsg(NewsCenterInfo newsCenterInfo) {
         //获取menuFragment所需的数据
         titles = new ArrayList<String>();
@@ -109,5 +119,5 @@ public class NewsCenterPager extends BasePager {
         }
         //将数据传递给MenuFragment
         ((HomeActivity)activity).getMenuFragment().initList(titles);
-    }*/
+    }
 }

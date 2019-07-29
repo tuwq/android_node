@@ -7,12 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.tuwq.zhbj.HomeActivity;
+
 /**
  * 首页和菜单页的fragment的父类
  */
 public abstract class BaseFragment extends Fragment {
     public Activity activity;
     public View view;
+    public SlidingMenu slidingMenu;
 
     /**
      * 初始化数据
@@ -22,6 +26,7 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         //getActivity : 获取管理fragment的activity
         activity = this.getActivity();
+        slidingMenu = ((HomeActivity)activity).getSlidingMenu();
         super.onCreate(savedInstanceState);
     }
 

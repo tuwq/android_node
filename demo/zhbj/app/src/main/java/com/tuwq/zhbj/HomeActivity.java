@@ -37,7 +37,7 @@ public class HomeActivity extends SlidingFragmentActivity {
         // TOUCHMODE_FULLSCREEN 全屏触摸
         // TOUCHMODE_MARGIN 边框触摸
         // TOUCHMODE_NONE 不可触摸
-        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
         // 制定侧拉菜单布局,id: 布局文件的id
         this.setBehindContentView(R.layout.menu);
         // 设置侧拉菜单宽度,单位px
@@ -72,5 +72,14 @@ public class HomeActivity extends SlidingFragmentActivity {
         //4.提交事务，操作生效
         beginTransaction.commit();
         //fragmentManager.findFragmentByTag(tag);//根据标示获取到已经添加过的fragment
+    }
+
+    /**
+     * 获取添加的MenuFragment的对象
+     *@return
+     */
+    public MenuFragment getMenuFragment(){
+        MenuFragment fragment = (MenuFragment) getSupportFragmentManager().findFragmentByTag("MENU");
+        return fragment;
     }
 }
