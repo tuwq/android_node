@@ -32,7 +32,7 @@ public class NewBean {
         public String url;
 
         //
-        //public boolean isRead;
+        public boolean isRead;
     }
     public class TopPic{
         public String description;

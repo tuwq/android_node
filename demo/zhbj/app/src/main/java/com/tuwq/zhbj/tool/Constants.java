@@ -5,4 +5,6 @@ public interface Constants {
     public static final String ISFIRSTENTER = "isfirstenter";
     /**缓存新闻中心信息的key**/
     public static final String NEWSCENTERMSG = "newscentermsg";
+    /**已读新闻的key**/
+    public static final String NEWSREAD = "newsread";
 }
