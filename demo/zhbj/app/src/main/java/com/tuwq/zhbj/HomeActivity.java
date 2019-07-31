@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
+import android.view.WindowManager;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.tuwq.zhbj.fragment.HomeFragment;
@@ -40,10 +42,16 @@ public class HomeActivity extends SlidingFragmentActivity {
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
         // 制定侧拉菜单布局,id: 布局文件的id
         this.setBehindContentView(R.layout.menu);
+
+
+        // 获取屏幕的宽度,计算内容显示宽度和屏幕宽度的比例
+        WindowManager windowManager = (WindowManager)getSystemService(WINDOW_SERVICE);
+        int width = windowManager.getDefaultDisplay().getWidth();// 获取屏幕的宽度
+
         // 设置侧拉菜单宽度,单位px
         // slidingMenu.setBehindWidth(200);
         // 设置菜单内容页的宽度
-        slidingMenu.setBehindOffset(200);
+        slidingMenu.setBehindOffset(width * 200 / 320);
         // 设置分割线的样式
         slidingMenu.setShadowDrawable(R.drawable.shape_slidingmenu_divirer);
         slidingMenu.setShadowWidth(5);

@@ -17,6 +17,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 
 import com.tuwq.zhbj.tool.Constants;
+import com.tuwq.zhbj.tool.DensityUtil;
 import com.tuwq.zhbj.tool.SharedPreferencesTool;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class GuideActivity extends Activity implements OnClickListener {
         ImageView point = new ImageView(this);
         point.setBackgroundResource(R.drawable.shape_guide_dot_bg);
         LinearLayout.LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        params.rightMargin=10;
+        params.rightMargin = DensityUtil.dip2px(this, 10); // 默认单位是像素,需要将dp转换成对应的px
         point.setLayoutParams(params);
         mDots.addView(point);
     }
@@ -158,7 +159,7 @@ public class GuideActivity extends Activity implements OnClickListener {
             System.out.println(position+":"+positionOffset);
             //红色点移动的距离 = 20 * positionOffset
             //第二个界面的时候是+1*20；第三个界面的时候是+2*20
-            int leftmargin = (int) (20 * positionOffset)+position * 20;
+            int leftmargin = (int) (DensityUtil.dip2px(GuideActivity.this,20) * positionOffset)+position * DensityUtil.dip2px(GuideActivity.this,20);
             //获取红色点的layoutparams
             RelativeLayout.LayoutParams layoutParams = (android.widget.RelativeLayout.LayoutParams) mRedDot.getLayoutParams();
             layoutParams.leftMargin = leftmargin;
