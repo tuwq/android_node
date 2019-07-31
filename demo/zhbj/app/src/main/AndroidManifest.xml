@@ -30,6 +30,10 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name=".NewsDetailActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
     </application>
 
 </manifest>

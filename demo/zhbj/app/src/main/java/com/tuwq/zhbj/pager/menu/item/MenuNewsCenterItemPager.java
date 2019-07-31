@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -36,6 +37,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.tuwq.zhbj.NewsDetailActivity;
 import com.tuwq.zhbj.R;
 import com.tuwq.zhbj.base.BaseMenupager;
 import com.tuwq.zhbj.bean.NewBean;
@@ -137,6 +139,10 @@ public class MenuNewsCenterItemPager extends BaseMenupager {
                     String sp_readid = SharedPreferencesTool.getString(activity, Constants.NEWSREAD, "");
                     SharedPreferencesTool.saveString(activity, Constants.NEWSREAD, sp_readid+"#"+news.get(position-1).id);
                 }
+                // 跳转到新闻详情页面,显示新闻详情
+                Intent intent = new Intent(activity, NewsDetailActivity.class);
+                intent.putExtra("url", news.get(position-1).url);
+                activity.startActivity(intent);
             }
         });
 
