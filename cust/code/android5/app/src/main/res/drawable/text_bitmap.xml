@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@mipmap/ring"
+    android:tintMode="src_atop"
+    android:tint="#FF0000"
+    >
+    <!--bitmap : 在原图的基础上进行图片的色值设置
+        tintMode ： 显示类型
+        tint ： 设置的色值
+    -->
+</bitmap>

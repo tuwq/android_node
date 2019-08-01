@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity">
+    <!-- elevation: 设置阴影效果
+         translationZ: 平移效果,只不过z轴平移,相当往上移,android系统会自动给个阴影
+     -->
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="阴影"
+        android:translationZ="10dp"
+        android:background="@drawable/circle_shape"
+        android:layout_centerInParent="true"
+        />-->
+    <!--outlineProvider : 设置阴影的轮廓的，
+        background ： 以背景显示阴影
+        bounds ： 以控件的边框显示阴影
+        paddedBounds ： 有padding值的时候阴影会往里收
+        none:没有
+   -->
+   <ImageView
+        android:id="@+id/icon1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/head"
+        android:translationZ="40dp"
+        android:background="@drawable/circle_shape"
+        android:outlineProvider="bounds"
+        android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="#FF0000"
+        android:text="矩形裁剪成圆形" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="@drawable/text_selector"
+        android:layout_margin="10dp"/>
+    <ImageView
+        android:id="@+id/icon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/palette"
+        />
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="波纹效果"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:layout_margin="10dp"
+        />
+</LinearLayout>
+</ScrollView>
