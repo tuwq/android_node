@@ -92,5 +92,21 @@
         android:layout_height="wrap_content"
         android:text="跳转RecycleView界面"
         />
+
+    <Button
+        android:id="@+id/okhttp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转okHttp界面"
+        android:layout_margin="10dp"
+        />
+
+     <Button
+       android:id="@+id/textinputlayout"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="跳转textinputlayout界面"
+       android:layout_margin="10dp"
+     />
 </LinearLayout>
 </ScrollView>

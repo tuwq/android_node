@@ -89,6 +89,22 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(MainActivity.this, RecycleActivity.class));
             }
         });
+
+        //跳转到okhttp界面
+        this.findViewById(R.id.okhttp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,OkHttpActivity.class));
+            }
+        });
+
+        // 跳转textinputlayout界面
+        this.findViewById(R.id.textinputlayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, TextinputlayoutActivity.class));
+            }
+        });
     }
 
 
