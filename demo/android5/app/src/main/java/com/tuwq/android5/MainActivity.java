@@ -1,14 +1,20 @@
 package com.tuwq.android5;
 
 
+import android.animation.Animator;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewOutlineProvider;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,6 +64,33 @@ public class MainActivity extends Activity {
                 mText2.setBackgroundColor(palette.getVibrantColor(Color.BLACK));
             }
         });
+
+        // 圆形缩小操作
+        Button bt2 = this.findViewById(R.id.bt2);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /**
+                 * arg1: 执行动画的控件
+                 * arg2,arg3: 中心点的坐标
+                 * arg4,arg5: 开始的角度和结束的角度
+                 */
+                Animator animator = ViewAnimationUtils.createCircularReveal(bt2,bt2.getWidth()/2,bt2.getHeight()/2,
+                        bt2.getWidth(),0);
+                animator.setInterpolator(new LinearInterpolator());//设置动画插补器,取消旋转动画0-360的卡顿现象
+                animator.setDuration(3000);
+                animator.start();
+            }
+        });
+        // 跳转RecycleView
+        this.findViewById(R.id.enterRecycleView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RecycleActivity.class));
+            }
+        });
     }
+
+
 
 }

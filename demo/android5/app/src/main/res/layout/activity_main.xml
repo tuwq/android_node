@@ -70,5 +70,27 @@
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:layout_margin="10dp"
         />
+    <Button
+        android:id="@+id/bt2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="圆形缩小"
+        android:background="@drawable/circle_shape"
+        android:layout_margin="10dp"
+        />
+    <!--stateListAnimator : 动画的状态选择器-->
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:stateListAnimator="@drawable/state_anim"
+        android:layout_margin="10dp"
+        />
+
+    <Button
+        android:id="@+id/enterRecycleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转RecycleView界面"
+        />
 </LinearLayout>
 </ScrollView>
