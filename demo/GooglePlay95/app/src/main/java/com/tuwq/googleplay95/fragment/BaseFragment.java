@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.tuwq.googleplay95.view.StateLayout;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment implements StateLayout.OnReloadListener{
 
     StateLayout stateLayout;
     @Nullable
@@ -25,11 +25,19 @@ public abstract class BaseFragment extends Fragment {
             stateLayout.bindSuccessView(getSuccessView());
             //一开始应该显示loading界面
             stateLayout.showLoadingView();
+            //设置重新加载按钮被点击的监听器
+            stateLayout.setOnReloadListener(this);
 
             //加载数据
             loadData();
         }
         return stateLayout;
+    }
+
+    @Override
+    public void onReload() {
+        //处理数据的重新加载
+        loadData();
     }
 
     /**

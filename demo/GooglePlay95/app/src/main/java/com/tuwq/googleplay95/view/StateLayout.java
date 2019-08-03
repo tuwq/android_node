@@ -3,6 +3,7 @@ package com.tuwq.googleplay95.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.tuwq.googleplay95.R;
@@ -39,13 +40,30 @@ public class StateLayout extends FrameLayout{
         addView(loadingView);
 
         //2.添加失败的View
+        //2.添加失败的View
         errorView = View.inflate(getContext(), R.layout.page_error, null);
+        Button btn_reload = (Button) errorView.findViewById(R.id.btn_reload);
+        btn_reload.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //1.先显示loadingView
+                showLoadingView();
+                //2.点击的时候再一次重新加载数据
+                if(listener!=null){
+                    listener.onReload();
+                }
+            }
+        });
         addView(errorView);
 
         //3.由于成功的View是动态的，所以提供一个方法，让外界传入
 
         //一开始隐藏所有的View
         hideAll();
+    }
+    private OnReloadListener listener;
+    public void setOnReloadListener(OnReloadListener listener){
+        this.listener = listener;
     }
 
     /**
@@ -93,5 +111,12 @@ public class StateLayout extends FrameLayout{
         if(successView!=null){
             successView.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public interface OnReloadListener{
+        /**
+         * 当重新加载的按钮被点击的时候调用
+         */
+        void onReload();
     }
 }

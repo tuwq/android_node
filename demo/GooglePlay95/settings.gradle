@@ -1,1 +1,1 @@
-include ':app',':pagerSlidingTablibrary',':photoViewlibrary'
+include ':app',':handmarkPulltorefreshLibrary',':photoViewlibrary'
