@@ -8,4 +8,8 @@ public interface Url {
     String IMG_PREFIX = SERVER_HOST + "image?name=";
 
     String Home = SERVER_HOST + "home?index=";
+    String App = SERVER_HOST + "app?index=";
+    String Game = SERVER_HOST + "game?index=";
+    String Subject = SERVER_HOST + "subject?index=";
+    String Recommend = SERVER_HOST + "recommend?index=0";
 }

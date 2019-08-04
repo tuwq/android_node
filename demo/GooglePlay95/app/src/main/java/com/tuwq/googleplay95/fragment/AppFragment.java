@@ -3,17 +3,34 @@ package com.tuwq.googleplay95.fragment;
 import android.view.View;
 import android.widget.TextView;
 
-public class AppFragment extends BaseFragment {
+import com.google.gson.reflect.TypeToken;
+import com.tuwq.googleplay95.adapter.HomeAdapter;
+import com.tuwq.googleplay95.adapter.MyBaseAdapter;
+import com.tuwq.googleplay95.bean.AppInfo;
+import com.tuwq.googleplay95.http.Url;
+import com.tuwq.googleplay95.util.GsonUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AppFragment extends PtrListFragment<AppInfo> {
+
     @Override
-    public void loadData() {
-
+    public MyBaseAdapter<AppInfo> getAdapter() {
+        return new HomeAdapter(list);
     }
-
-    public View getSuccessView() {
-        TextView textView = new TextView(getActivity());
-
-        textView.setTextSize(25);
-        textView.setText(this.getClass().getSimpleName());
-        return textView;
+    @Override
+    public String getUrl() {
+        return Url.App + list.size();
+    }
+    @Override
+    protected void parseDataAndUpdate(String result) {
+        //将result解析为装有AppInfo的集合
+        ArrayList<AppInfo> appInfos = (ArrayList<AppInfo>) GsonUtil.parseJsonToList(result, new TypeToken<List<AppInfo>>() {
+        }.getType());
+        if (appInfos != null) {
+            list.addAll(appInfos);
+            baseAdapter.notifyDataSetChanged();
+        }
     }
 }
