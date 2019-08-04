@@ -13,6 +13,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -21,6 +22,7 @@ import com.tuwq.googleplay95.bean.AppInfo;
 import com.tuwq.googleplay95.global.UILOption;
 import com.tuwq.googleplay95.http.HttpHelper;
 import com.tuwq.googleplay95.http.Url;
+import com.tuwq.googleplay95.module.DetailInfoModule;
 import com.tuwq.googleplay95.util.GsonUtil;
 import com.tuwq.googleplay95.view.StateLayout;
 
@@ -28,26 +30,22 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
-    @Bind(R.id.iv_image)
-    ImageView ivImage;
-    @Bind(R.id.tv_name)
-    TextView tvName;
-    @Bind(R.id.rb_star)
-    RatingBar rbStar;
-    @Bind(R.id.tv_download_num)
-    TextView tvDownloadNum;
-    @Bind(R.id.tv_version)
-    TextView tvVersion;
-    @Bind(R.id.tv_date)
-    TextView tvDate;
-    @Bind(R.id.tv_size)
-    TextView tvSize;
-    @Bind(R.id.ll_info)
-    LinearLayout llInfo;
+
+
+    @Bind(R.id.ll_container)
+    LinearLayout llContainer;
+    @Bind(R.id.scrollView)
+    ScrollView scrollView;
 
     private String packageName;
     private StateLayout stateLayout;
 
+    private DetailInfoModule infoModule;
+    private DetailSafeModule safeModule;
+    private DetailScreenModule screenModule;
+    private DetailDesModule desModule;
+
+    private AppInfo appInfo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,32 +69,52 @@ public class DetailActivity extends AppCompatActivity {
         loadData();
     }
 
+    /**
+     * 获取成功的VIEW
+     *
+     * @return
+     */
     public View getSuccessView() {
         View view = View.inflate(this, R.layout.activity_detail, null);
+        ButterKnife.bind(this, view);
 
-        ButterKnife.bind(this,view);
+        //1.加入info 模块
+        infoModule = new DetailInfoModule();
+        llContainer.addView(infoModule.getModuleView());
+        //2.加入safe 模块
+        safeModule = new DetailSafeModule();
+        llContainer.addView(safeModule.getModuleView());
+        //3.加入screen 模块
+        screenModule = new DetailScreenModule();
+        screenModule.setActivity(DetailActivity.this);
+        llContainer.addView(screenModule.getModuleView());
+        //4.加入des 模块
+        desModule = new DetailDesModule();
+        llContainer.addView(desModule.getModuleView());
+        desModule.setScrollView(scrollView);
+
         return view;
     }
 
-    private AppInfo appInfo;
 
     /**
      * 加载数据
      */
     private void loadData() {
-        String url = String.format(Url.Detail,packageName);
+        String url = String.format(Url.Detail, packageName);
         HttpHelper.create()
                 .get(url, new HttpHelper.HttpCallback() {
                     @Override
                     public void onSuccess(String result) {
                         stateLayout.showSuccessView();
 
-                        appInfo =  GsonUtil.parseJsonToBean(result,AppInfo.class);
-                        if(appInfo!=null){
+                        appInfo = GsonUtil.parseJsonToBean(result, AppInfo.class);
+                        if (appInfo != null) {
                             //更新UI
                             updateUI();
                         }
                     }
+
                     @Override
                     public void onFail(Exception e) {
 
@@ -108,35 +126,17 @@ public class DetailActivity extends AppCompatActivity {
      * 更新UI的代码
      */
     private void updateUI() {
-        ImageLoader.getInstance().displayImage(Url.IMG_PREFIX+appInfo.iconUrl,ivImage, UILOption.options);
-        tvName.setText(appInfo.name);
-        rbStar.setRating(appInfo.stars);
-        tvDownloadNum.setText("下载："+appInfo.downloadNum);
-        tvVersion.setText("版本："+appInfo.version);
-        tvDate.setText("日期："+appInfo.date);
-        tvSize.setText("大小："+ Formatter.formatFileSize(this,appInfo.size));
+        //1.绑定info 模块的数据
+        infoModule.bindData(appInfo);
 
-        //执行掉落动画
-        //1.先让llInfo上去
-        //添加一个布局完成的监听器
-        llInfo.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            /**
-             * 当执行完布局之后，回调该方法，因此可以在该方法中获取宽高
-             */
-            @Override
-            public void onGlobalLayout() {
-                llInfo.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        //2.绑定safe 模块的数据
+        safeModule.bindData(appInfo);
 
-                llInfo.setTranslationY(-llInfo.getHeight());
-                //再通过属性动画移动下来
-                ViewCompat.animate(llInfo)
-                        .translationY(0)
-                        .setDuration(800)
-                        .setStartDelay(400)
-                        .setInterpolator(new BounceInterpolator())//像球落地一样的感觉
-                        .start();
-            }
-        });
+        //3.绑定screen 模块的数据
+        screenModule.bindData(appInfo);
+
+        //4.绑定des 模块的数据
+        desModule.bindData(appInfo);
     }
 
     /**
