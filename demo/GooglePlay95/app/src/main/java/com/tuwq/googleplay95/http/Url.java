@@ -12,4 +12,7 @@ public interface Url {
     String Game = SERVER_HOST + "game?index=";
     String Subject = SERVER_HOST + "subject?index=";
     String Recommend = SERVER_HOST + "recommend?index=0";
+    String Category = SERVER_HOST + "category?index=0";
+    String Hot = SERVER_HOST + "hot?index=0";
+    String Detail = SERVER_HOST + "detail?packageName=%s";//占位符的方式
 }

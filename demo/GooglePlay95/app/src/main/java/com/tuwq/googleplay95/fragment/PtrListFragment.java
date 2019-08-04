@@ -1,6 +1,7 @@
 package com.tuwq.googleplay95.fragment;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * 带有下拉刷新的列表的Fragment的基类
  * @param <T>
  */
-public abstract class PtrListFragment<T> extends BaseFragment{
+public abstract class PtrListFragment<T> extends BaseFragment implements AdapterView.OnItemClickListener{
 
     PullToRefreshListView ptrView;
     ListView listView;
@@ -53,6 +54,9 @@ public abstract class PtrListFragment<T> extends BaseFragment{
         baseAdapter = getAdapter();
         listView.setAdapter(baseAdapter);
 
+        //5.设置item的点击监听器
+        listView.setOnItemClickListener(this);
+
         return ptrView;
     }
 
@@ -60,6 +64,8 @@ public abstract class PtrListFragment<T> extends BaseFragment{
      * 让子类进行扩展，如果他们有添加头部的需要，那么就是实现
      */
     protected void addHeaderView() {}
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) { }
 
     @Override
     public void loadData() {

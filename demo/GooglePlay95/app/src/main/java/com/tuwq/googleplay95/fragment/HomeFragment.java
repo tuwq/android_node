@@ -1,15 +1,18 @@
 package com.tuwq.googleplay95.fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.tuwq.googleplay95.R;
+import com.tuwq.googleplay95.activity.DetailActivity;
 import com.tuwq.googleplay95.adapter.HomeAdapter;
 import com.tuwq.googleplay95.adapter.HomePagerAdapter;
 import com.tuwq.googleplay95.adapter.MyBaseAdapter;
@@ -48,6 +51,15 @@ public class HomeFragment extends PtrListFragment<AppInfo> {
         //停止自动轮播的行为
         handler.removeMessages(0);
     }
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //开启详情界面
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+//        LogUtil.e("position: "+position);
+        intent.putExtra("packageName",list.get(position-2).packageName);
+        startActivity(intent);
+    }
+
     /**
      * 添加headerView
      */
