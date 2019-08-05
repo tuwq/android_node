@@ -7,4 +7,6 @@
     <dimen name="dp15">15dp</dimen>
     <dimen name="dp12">12dp</dimen>
     <dimen name="dp6">6dp</dimen>
+    <dimen name="dp90">90dp</dimen>
+    <dimen name="dp150">150dp</dimen>
 </resources>

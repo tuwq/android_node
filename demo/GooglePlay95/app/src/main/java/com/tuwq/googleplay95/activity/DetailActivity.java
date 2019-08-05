@@ -22,7 +22,10 @@ import com.tuwq.googleplay95.bean.AppInfo;
 import com.tuwq.googleplay95.global.UILOption;
 import com.tuwq.googleplay95.http.HttpHelper;
 import com.tuwq.googleplay95.http.Url;
+import com.tuwq.googleplay95.module.DetailDesModule;
 import com.tuwq.googleplay95.module.DetailInfoModule;
+import com.tuwq.googleplay95.module.DetailSafeModule;
+import com.tuwq.googleplay95.module.DetailScreenModule;
 import com.tuwq.googleplay95.util.GsonUtil;
 import com.tuwq.googleplay95.view.StateLayout;
 

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="@drawable/grid_item_bg_normal"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_image1"
+            android:layout_width="60dp"
+            android:layout_height="28dp" />
+        <ImageView
+            android:id="@+id/iv_image2"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_width="60dp"
+            android:layout_height="28dp"
+            android:layout_toRightOf="@+id/iv_image1" />
+        <ImageView
+            android:layout_toRightOf="@id/iv_image2"
+            android:id="@+id/iv_image3"
+            android:layout_width="60dp"
+            android:layout_height="28dp" />
+        <ImageView
+            android:id="@+id/iv_safe_arrow"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_safe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_icon1"
+                android:src="@mipmap/ic_default"
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/tv_des1"
+                android:textColor="@color/txt_small"
+                android:textSize="14sp"
+                android:text="窗含西岭千秋雪，门泊东吴万里船!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_icon2"
+                android:src="@mipmap/ic_default"
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/tv_des2"
+                android:textColor="@color/txt_small"
+                android:textSize="14sp"
+                android:text="窗含西岭千秋雪，门泊东吴万里船!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_icon3"
+                android:src="@mipmap/ic_default"
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/tv_des3"
+                android:textColor="@color/txt_small"
+                android:textSize="14sp"
+                android:text="窗含西岭千秋雪，门泊东吴万里船!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
