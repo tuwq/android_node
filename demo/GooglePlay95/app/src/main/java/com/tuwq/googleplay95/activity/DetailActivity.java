@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.BounceInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -23,6 +24,7 @@ import com.tuwq.googleplay95.global.UILOption;
 import com.tuwq.googleplay95.http.HttpHelper;
 import com.tuwq.googleplay95.http.Url;
 import com.tuwq.googleplay95.module.DetailDesModule;
+import com.tuwq.googleplay95.module.DetailDownloadModule;
 import com.tuwq.googleplay95.module.DetailInfoModule;
 import com.tuwq.googleplay95.module.DetailSafeModule;
 import com.tuwq.googleplay95.module.DetailScreenModule;
@@ -34,11 +36,12 @@ import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
 
-
     @Bind(R.id.ll_container)
     LinearLayout llContainer;
     @Bind(R.id.scrollView)
     ScrollView scrollView;
+    @Bind(R.id.fl_download)
+    FrameLayout fl_download;
 
     private String packageName;
     private StateLayout stateLayout;
@@ -47,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
     private DetailSafeModule safeModule;
     private DetailScreenModule screenModule;
     private DetailDesModule desModule;
+    private DetailDownloadModule downloadModule;
 
     private AppInfo appInfo;
     @Override
@@ -96,6 +100,10 @@ public class DetailActivity extends AppCompatActivity {
         llContainer.addView(desModule.getModuleView());
         desModule.setScrollView(scrollView);
 
+        //5.加入download 模块
+        downloadModule = new DetailDownloadModule();
+        fl_download.addView(downloadModule.getModuleView());
+
         return view;
     }
 
@@ -140,6 +148,9 @@ public class DetailActivity extends AppCompatActivity {
 
         //4.绑定des 模块的数据
         desModule.bindData(appInfo);
+
+        //5.绑定download 模块的数据
+        downloadModule.bindData(appInfo);
     }
 
     /**
@@ -152,6 +163,13 @@ public class DetailActivity extends AppCompatActivity {
         //显示home按钮
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //避免内存泄露
+        downloadModule.removeObserver();
     }
 
     @Override

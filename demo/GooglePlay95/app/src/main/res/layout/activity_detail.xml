@@ -15,6 +15,7 @@
         </LinearLayout>
     </ScrollView>
     <FrameLayout
+        android:id="@+id/fl_download"
         android:background="@drawable/detail_bottom_bg"
         android:layout_width="match_parent"
         android:layout_height="60dp"></FrameLayout>

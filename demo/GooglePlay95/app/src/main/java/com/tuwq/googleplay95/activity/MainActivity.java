@@ -26,6 +26,9 @@ import com.tuwq.googleplay95.fragment.RecommendFragment;
 import com.tuwq.googleplay95.fragment.SubjectFragment;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

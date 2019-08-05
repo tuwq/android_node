@@ -15,4 +15,9 @@ public interface Url {
     String Category = SERVER_HOST + "category?index=0";
     String Hot = SERVER_HOST + "hot?index=0";
     String Detail = SERVER_HOST + "detail?packageName=%s";//占位符的方式
+
+    //从头下载
+    String Download = SERVER_HOST + "download?name=%s";
+    //断点下载
+    String BreadDownload = SERVER_HOST + "download?name=%s&range=%d";
 }
