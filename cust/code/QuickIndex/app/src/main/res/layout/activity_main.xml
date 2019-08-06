@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.tuwq.quickindex.QuickIndexBar
+        android:layout_width="30dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/quickIndeBar"
+        android:background="#FF1111"
+        android:layout_height="match_parent" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_currentWord"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:background="@drawable/circle_bg"
+        android:layout_width="110dp"
+        android:layout_height="110dp" />
+</RelativeLayout>
