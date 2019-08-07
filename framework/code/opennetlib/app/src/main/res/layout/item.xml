@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <!--<ImageView
+        android:layout_width="100dp"
+        android:id="@+id/img"
+        android:layout_height="100dp" />-->
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        fresco:fadeDuration="3000"
+        fresco:actualImageScaleType="centerCrop"
+        fresco:placeholderImage="@drawable/place"
+        fresco:placeholderImageScaleType="centerCrop"
+        fresco:failureImage="@drawable/error"
+        fresco:failureImageScaleType="centerCrop"
+        fresco:retryImage="@drawable/retry"
+        fresco:retryImageScaleType="centerCrop"
+        fresco:progressBarImage="@drawable/progress"
+        fresco:progressBarImageScaleType="centerCrop"
+        fresco:progressBarAutoRotateInterval="1000"
+        fresco:roundAsCircle="true"
+        fresco:roundedCornerRadius="5dp"
+        fresco:roundTopLeft="true"
+        fresco:roundTopRight="false"
+        fresco:roundBottomLeft="false"
+        fresco:roundBottomRight="true"
+        fresco:roundWithOverlayColor="@android:color/black"
+        fresco:roundingBorderWidth="2dp"
+        fresco:roundingBorderColor="@android:color/holo_red_dark"
+        />
+    <!--
+    fresco:overlayImage="@mipmap/ic_launcher"
+    fresco:backgroundImage="@mipmap/ic_launcher"-->
+</LinearLayout>
