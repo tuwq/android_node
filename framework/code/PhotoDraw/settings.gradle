@@ -1,0 +1,7 @@
+include ':app'
+include ':customShapeLib'
+include ':MPChartLib'
+include ':photolibrary'
+include ':pinnedSelectionLibrary'
+include ':pullToRefresh'
+

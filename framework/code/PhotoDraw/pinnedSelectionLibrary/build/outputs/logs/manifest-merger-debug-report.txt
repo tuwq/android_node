@@ -1,0 +1,41 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:1-9:12
+	package
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:3:5-41
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+application
+ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:7:5-47
+	android:allowBackup
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml:7:18-44
+uses-sdk
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		ADDED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
+		INJECTED from E:\androidStudioSpace\gaoji\PhotoDraw\pinnedSelectionLibrary\src\main\AndroidManifest.xml
