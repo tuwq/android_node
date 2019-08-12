@@ -150,4 +150,14 @@ public class HomeFragment extends BaseFragment implements HomeMvp.View {
             LogUtils.e(TAG,"OnMainScrollListener.onScrolled," + dx + "." + dy);
         }
     }
+
+    @Override
+    public void showLoading() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void dismissLoading() {
+        dismissLoadingDialog();
+    }
 }

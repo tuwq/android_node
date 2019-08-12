@@ -14,5 +14,7 @@ public interface HomeMvp {
     interface View{
         void setData(List<VideoBean> videoBeen);
         void onError(int code, Exception e);
+        void showLoading();
+        void dismissLoading();
     }
 }

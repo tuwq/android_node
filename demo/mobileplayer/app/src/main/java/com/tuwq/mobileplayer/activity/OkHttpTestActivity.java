@@ -52,6 +52,14 @@ public class OkHttpTestActivity extends AppCompatActivity {
             public void onError(int code, Exception e) {
                 throw new RuntimeException("错误代码为："+code+"。请求主页的数据，发生异常，e="+e);
             }
+            @Override
+            public void showLoading() {
+                   
+            }
+            @Override
+            public void dismissLoading() {
+
+            }
         });
         presenter.loadData(0,10);
     }

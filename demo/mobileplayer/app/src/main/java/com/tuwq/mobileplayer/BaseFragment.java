@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.tuwq.mobileplayer.utils.LogUtils;
 
 import butterknife.ButterKnife;
@@ -19,6 +20,7 @@ public abstract class BaseFragment extends Fragment {
     protected View rootView;
     protected static final int SIZE = 10;
     protected int offset;
+    private MaterialDialog dialog;
 
     /**
      * 创建并初始化子类
@@ -49,5 +51,17 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    protected void showLoadingDialog(){
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(getContext());
+        builder.title("等一下")
+                .content("正在努力加载中...")
+                .progress(true,0);
+        dialog = builder.show();
+    }
+
+    protected void dismissLoadingDialog(){
+        dialog.dismiss();
     }
 }

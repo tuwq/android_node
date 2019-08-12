@@ -1,5 +1,6 @@
 package com.tuwq.mobileplayer.adapter;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tuwq.mobileplayer.R;
 import com.tuwq.mobileplayer.Util;
+import com.tuwq.mobileplayer.activity.PlayerActivity;
 import com.tuwq.mobileplayer.bean.VideoBean;
 
 import java.util.List;
@@ -74,6 +76,19 @@ public class MvChildAdapter extends RecyclerView.Adapter<MvChildAdapter.MyViewHo
             viewbgs.getLayoutParams().width = point.x;
             viewbgs.getLayoutParams().height = point.y;
             viewbgs.requestLayout();
+
+            // 注册当前条目的点击监听
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    VideoBean videoBean = videos.get(MyViewHolder.this.getAdapterPosition());
+                    // 跳转到播放界面
+                    Intent intent = new Intent(view.getContext(), PlayerActivity.class);
+                    intent.putExtra("url", videoBean.getUrl());
+                    intent.putExtra("title", videoBean.getTitle());
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

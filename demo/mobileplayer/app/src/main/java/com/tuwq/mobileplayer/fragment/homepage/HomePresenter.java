@@ -19,6 +19,7 @@ public class HomePresenter implements HomeMvp.Presenter {
     @Override
     public void loadData(int offset, int size) {
         LogUtils.e(TAG,"HomePresenter.loadData,开始加载数据");
+        view.showLoading();
 
         String url = URLProviderUtil.getMainPageUrl(offset,size);
 
@@ -26,11 +27,13 @@ public class HomePresenter implements HomeMvp.Presenter {
             @Override
             public void onFailure(int code, Exception e) {
                 view.onError(code, e);
+                view.dismissLoading();
             }
             @Override
             public void onSuccess(List<VideoBean> videoBeen) {
                 LogUtils.e(TAG,"HomePresenter.onSuccess,成功获取到数据");
                 view.setData(videoBeen);
+                view.dismissLoading();
             }
         });
     }

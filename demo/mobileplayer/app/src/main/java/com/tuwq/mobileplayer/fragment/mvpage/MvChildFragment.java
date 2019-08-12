@@ -62,7 +62,6 @@ public class MvChildFragment extends BaseFragment implements MvChildMvp.View {
         recylerview.setAdapter(mvChildAdapter);
         // 上拉加载监听
         recylerview.addOnScrollListener(new OnMvScrollListener());
-
         // 下拉刷新监听
         refresh.setOnRefreshListener(new OnMvRefreshListener());
     }
