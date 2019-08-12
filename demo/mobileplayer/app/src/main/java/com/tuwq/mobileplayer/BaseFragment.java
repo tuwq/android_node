@@ -17,6 +17,8 @@ import butterknife.ButterKnife;
 public abstract class BaseFragment extends Fragment {
 
     protected View rootView;
+    protected static final int SIZE = 10;
+    protected int offset;
 
     /**
      * 创建并初始化子类
