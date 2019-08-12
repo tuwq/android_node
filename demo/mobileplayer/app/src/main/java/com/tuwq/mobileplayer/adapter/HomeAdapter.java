@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tuwq.mobileplayer.R;
 import com.tuwq.mobileplayer.Util;
+import com.tuwq.mobileplayer.activity.PlayerActivity;
+import com.tuwq.mobileplayer.activity.WebViewActivity;
 import com.tuwq.mobileplayer.bean.VideoBean;
 
 import java.util.List;
@@ -134,6 +136,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             // 注册点击监听
             itemView.setOnClickListener(new OnClickListener());
         }
+
         private class OnClickListener implements View.OnClickListener {
             @Override
             public void onClick(View view) {
@@ -146,18 +149,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
                     case 0:
                     case 4:
                     case 10:
-                        /*mIntent = new Intent(context, WebViewActivity.class);
+                        mIntent = new Intent(context, WebViewActivity.class);
                         mIntent.putExtra("url",videoBean.getUrl());
                         context.startActivity(mIntent);
-                        break;*/
+                        break;
                     case 1:
                     case 5:
                     case 7:
-                       /* mIntent = new Intent(context, PlayerActivity.class);
+                        mIntent = new Intent(context, PlayerActivity.class);
                         mIntent.putExtra("url",videoBean.getUrl());
                         mIntent.putExtra("title",videoBean.getTitle());
                         context.startActivity(mIntent);
-                        break;*/
+                        break;
                     case 2:
                     case 3:
                         break;
