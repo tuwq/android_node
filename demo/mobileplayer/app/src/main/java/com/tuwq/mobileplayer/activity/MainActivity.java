@@ -17,6 +17,8 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 import com.tuwq.mobileplayer.R;
 import com.tuwq.mobileplayer.fragment.TestFragment;
 import com.tuwq.mobileplayer.fragment.homepage.HomeFragment;
+import com.tuwq.mobileplayer.fragment.mvpage.MvFragment;
+import com.tuwq.mobileplayer.fragment.yuedanpage.YueDanFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         // 初始化 Fragment 集合
         sparseArray = new SparseArray<>();
         sparseArray.append(R.id.bottombar_home,new HomeFragment());
-        sparseArray.append(R.id.bottombar_mv, TestFragment.newInstance("MV"));
+        sparseArray.append(R.id.bottombar_mv, new MvFragment());
         sparseArray.append(R.id.bottombar_vbang,TestFragment.newInstance("V榜"));
-        sparseArray.append(R.id.bottombar_yuedan,TestFragment.newInstance("悦单"));
+        sparseArray.append(R.id.bottombar_yuedan, new YueDanFragment());
 
         // 处理底部栏
         BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
