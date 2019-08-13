@@ -9,7 +9,9 @@ import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,8 +19,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.tuwq.mobileplayer.R;
+import com.tuwq.mobileplayer.Util;
 import com.tuwq.mobileplayer.bean.MusicBean;
 import com.tuwq.mobileplayer.service.AudioService;
+import com.tuwq.mobileplayer.utils.LogUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +55,24 @@ public class AudioPlayerActivity extends AppCompatActivity {
     private ServiceConnection conn;
     private AudioService.AudioBinder audioBinder;
     private AudioReceiver audioReceiver;
+    private static final int MSG_UPDATE_POSITION = 0;
+    private static final int MSG_ROLLING_LYRICS = 1;
+    /**
+     * 延迟更新进度条的handler
+     */
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case MSG_UPDATE_POSITION:
+                    startUpdatePosition();
+                    break;
+                case MSG_ROLLING_LYRICS:
+                    //startRollingLyrics();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +91,9 @@ public class AudioPlayerActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter("com.tuwq.audio_prepared");
         audioReceiver = new AudioReceiver();
         registerReceiver(audioReceiver, filter);
+
+        // 进度条监听
+        skPosition.setOnSeekBarChangeListener(new OnAudioSeekBarChangeListener());
     }
 
     /**
@@ -97,6 +122,8 @@ public class AudioPlayerActivity extends AppCompatActivity {
         unregisterReceiver(audioReceiver);
         // 停止播放歌曲
         audioBinder.stop();
+        // 移除所有的 handler 消息
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     /**
@@ -110,13 +137,16 @@ public class AudioPlayerActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.iv_playmode:
+                switchPlayMode();
                 break;
             case R.id.iv_pre:
+                audioBinder.playPre();
                 break;
             case R.id.iv_pause:
                 swicthPauseStatus();
                 break;
             case R.id.iv_next:
+                audioBinder.playNext();
                 break;
         }
     }
@@ -125,6 +155,28 @@ public class AudioPlayerActivity extends AppCompatActivity {
     private void swicthPauseStatus() {
         audioBinder.switchPauseStatus();
         updatePauseBtn();
+    }
+
+    // 切换播放模式
+    private void switchPlayMode() {
+        audioBinder.switchPlayMode();
+
+        updatePlayModeBtn();
+    }
+
+    // 更新播放顺序的图片样式
+    private void updatePlayModeBtn() {
+        switch (audioBinder.getPlayMode()){
+            case AudioService.PLAYMODE_ALL:
+                ivPlaymode.setImageResource(R.drawable.selector_btn_playmode_order);
+                break;
+            case AudioService.PLAYMODE_SINGLE:
+                ivPlaymode.setImageResource(R.drawable.selector_btn_playmode_single);
+                break;
+            case AudioService.PLAYMODE_RANDOM:
+                ivPlaymode.setImageResource(R.drawable.selector_btn_playmode_random);
+                break;
+        }
     }
 
     /**
@@ -170,7 +222,66 @@ public class AudioPlayerActivity extends AppCompatActivity {
                 tvTitle.setText(musicBean.title);
                 tvArtist.setText(musicBean.artist);
 
+                // 更新播放进度
+                startUpdatePosition();
+
+                // 更新播放顺序图片
+                updatePlayModeBtn();
             }
         }
     }
+
+    /**
+     * 更新播放进度,并稍后再次更新
+     */
+    private void startUpdatePosition() {
+        // 更新播放进度
+        int duration = audioBinder.getDuration();
+        String durationStr = Util.formatTime(duration);
+        int position = audioBinder.getPosition();
+        String positionStr = Util.formatTime(position);
+        tvPosition.setText(positionStr +" / " +durationStr);
+        skPosition.setMax(duration);
+        skPosition.setProgress(position);
+        // 稍后再次更新,发送延迟消息
+        mHandler.sendEmptyMessageDelayed(MSG_UPDATE_POSITION,500);
+    }
+
+    /**
+     * 音乐播放器进度条的点击监听
+     */
+    private class OnAudioSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+        /**
+         * 当进度发生变化
+         * @param seekBar
+         * @param progress
+         * @param fromUser
+         */
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            // 如果不是用户发起的变更，则不处理
+            if (!fromUser){
+                return;
+            }
+            audioBinder.seekTo(progress);
+        }
+
+        /**
+         * 当用户手指按下
+         * @param seekBar
+         */
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            LogUtils.e(TAG,"OnAudioSeekBarChangeListener.onStartTrackingTouch,");
+        }
+        /**
+         * 用户手指抬起
+         * @param seekBar
+         */
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            LogUtils.e(TAG,"OnAudioSeekBarChangeListener.onStopTrackingTouch,");
+        }
+    }
+
 }

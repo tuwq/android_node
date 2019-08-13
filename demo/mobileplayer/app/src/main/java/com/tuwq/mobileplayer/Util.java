@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Point;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
+
+import java.util.Calendar;
 
 public class Util {
 
@@ -107,5 +110,26 @@ public class Util {
         int imgW = getScreenWidth(context);
         int imgH = picH * imgW / picW;
         return new Point(imgW, imgH);
+    }
+
+    /**
+     * 格式化时间。00:01 或者 01:02:03
+     * @param time
+     * @return
+     */
+    public static String formatTime(int time){
+//        time / 60 / 60 /1000
+        // 使用 Calendar 获取小时数
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear(); // 清空原有数据
+        calendar.add(Calendar.MILLISECOND,time);
+        int hour = calendar.get(Calendar.HOUR);
+//        LogUtils.e(TAG,"Util.formatTime,hour="+hour);
+
+        if (hour > 1){
+            return (String) DateFormat.format("hh:mm:ss",calendar);
+        }else{
+            return (String) DateFormat.format("mm:ss",calendar);
+        }
     }
 }
