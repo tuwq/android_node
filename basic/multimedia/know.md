@@ -23,3 +23,17 @@
 ## sufaceView和videoView
 	sufaceView是一个重量级控件,加载需要一些时间
 	videoView是对sufaceView和MediaPlayer的封装
+
+## 查询音乐数据
+	MediaScaner 当每一次加载SD卡时候,都会扫描卡里的多媒体文件
+	MediaStore 获取MediaScaner的数据,保存到MediaProvider
+	MediaProvider 提供手机里所有的多媒体文件数据
+
+## MediaPlayer的生命周期
+	在prepare之后,音乐资源才被加载到内存里,此时可以调用start,stop
+	在stop之后,必须重新Prepare才能恢复歌曲播放
+	Prepare可以是同步的也可以是异步的
+	stop,reset,release区别
+		stop之后想要重新播放歌曲,只要Prepare就可以
+		reset之后想要重新播放歌曲,必须要先设置文件路径,再prepare
+		release之后,当前MediaPlayer对象不可重用,只能抛弃掉

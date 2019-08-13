@@ -35,4 +35,8 @@
 		再次调用unbindService将报错崩溃
 	startService与bindService可以混合使用
 
+## Activity与Service相互控制
+	Activity控制Service使用bindService
+	Service控制Activity使用广播Receiver或EventBus
+
 

@@ -3,6 +3,7 @@
     package="com.tuwq.mobileplayer">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,8 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.OkHttpTestActivity" />
+        <activity android:name=".activity.PlayerActivity" />
         <activity android:name=".activity.SettingsActivity" />
-        <activity android:name=".activity.OkHttpTestActivity"></activity>
+        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.AudioPlayerActivity" />
+        <service android:name=".service.AudioService"/>
     </application>
 
 
