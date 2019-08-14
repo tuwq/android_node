@@ -26,6 +26,7 @@
         <activity android:name=".activity.SettingsActivity" />
         <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.AudioPlayerActivity" />
+        <activity android:name=".activity.AboutActivity" />
         <service android:name=".service.AudioService"/>
     </application>
 
