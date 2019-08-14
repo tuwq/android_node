@@ -9,6 +9,7 @@ import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -21,8 +22,11 @@ import android.widget.TextView;
 import com.tuwq.mobileplayer.R;
 import com.tuwq.mobileplayer.Util;
 import com.tuwq.mobileplayer.bean.MusicBean;
+import com.tuwq.mobileplayer.lyrics.LyricsView;
 import com.tuwq.mobileplayer.service.AudioService;
 import com.tuwq.mobileplayer.utils.LogUtils;
+
+import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +55,8 @@ public class AudioPlayerActivity extends AppCompatActivity {
     ImageView ivNext;
     @Bind(R.id.iv_wave)
     ImageView ivWave;
+    @Bind(R.id.lyricsview)
+    LyricsView lyricsView;
 
     private ServiceConnection conn;
     private AudioService.AudioBinder audioBinder;
@@ -68,7 +74,7 @@ public class AudioPlayerActivity extends AppCompatActivity {
                     startUpdatePosition();
                     break;
                 case MSG_ROLLING_LYRICS:
-                    //startRollingLyrics();
+                    startRollingLyrics();
                     break;
             }
         }
@@ -227,9 +233,24 @@ public class AudioPlayerActivity extends AppCompatActivity {
 
                 // 更新播放顺序图片
                 updatePlayModeBtn();
+
+                // 开始更新歌词
+                File file = new File(Environment.getExternalStorageDirectory(),"test/audio/"+musicBean.title+".lrc");
+                lyricsView.setLyricFile(file);
+                startRollingLyrics();
             }
         }
     }
+
+    /**
+     * 刷新歌词的居中行，并稍后再次刷新
+     */
+    private void startRollingLyrics() {
+        lyricsView.computeCenterIndex(audioBinder.getPosition(),audioBinder.getDuration());
+
+        mHandler.sendEmptyMessage(MSG_ROLLING_LYRICS);
+    }
+
 
     /**
      * 更新播放进度,并稍后再次更新

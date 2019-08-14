@@ -42,11 +42,8 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/audio_wave_anim" />
     <!--歌词-->
-    <TextView
+    <com.tuwq.mobileplayer.lyrics.LyricsView
+        android:id="@+id/lyricsview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="歌词"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+        android:layout_height="match_parent" />
 </LinearLayout>
