@@ -32,4 +32,17 @@ public class StringUtils {
             return pwd.matches("^[a-zA-Z][0-9]\\w{4,19}$");
         }
     }
+
+    /**
+     * 获取首字母
+     * @param text
+     * @return
+     */
+    public static String getFirstChar(String text){
+        if(TextUtils.isEmpty(text)){
+            return null;
+        }else{
+            return text.substring(0,1).toUpperCase();
+        }
+    }
 }

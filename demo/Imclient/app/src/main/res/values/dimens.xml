@@ -4,4 +4,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="avatar_size">60dp</dimen>
+    <dimen name="slide_text_size">12sp</dimen>
 </resources>
