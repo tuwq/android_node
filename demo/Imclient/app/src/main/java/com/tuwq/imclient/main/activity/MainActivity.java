@@ -12,13 +12,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
 import com.tuwq.imclient.R;
 import com.tuwq.imclient.BaseFragment;
 import com.tuwq.imclient.addFriend.activity.AddFriendActivity;
 import com.tuwq.imclient.main.FragmentFactory;
 import com.tuwq.imclient.BaseActivity;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -28,6 +34,7 @@ public class MainActivity extends BaseActivity {
     private Toolbar toolbar;
     private TextView tv_title;
     private BottomNavigationBar bottomNavigationBar;
+    private BadgeItem badgeItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +68,15 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initBottomNavigationBar() {
-        BottomNavigationItem item = new BottomNavigationItem(R.mipmap.conversation_selected_2, "消息");
+        BottomNavigationItem conversationItem = new BottomNavigationItem(R.mipmap.conversation_selected_2, "消息");
+        badgeItem = new BadgeItem();
+        updateBadgeItem();
+        conversationItem.setBadgeItem(badgeItem);
 //        item.setActiveColor(getResources().getColor(R.color.btn_normal));
 //        item.setInActiveColor(getResources().getColor(R.color.inactive));
-        bottomNavigationBar.addItem(item);
+        bottomNavigationBar.addItem(conversationItem);
 
-        item = new BottomNavigationItem(R.mipmap.contact_selected_2, "联系人");
+        BottomNavigationItem item = new BottomNavigationItem(R.mipmap.contact_selected_2, "联系人");
 //        item.setActiveColor(getResources().getColor(R.color.btn_normal));
 //        item.setInActiveColor(getResources().getColor(R.color.inactive));
         bottomNavigationBar.addItem(item);
@@ -115,6 +125,21 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    public void updateBadgeItem() {
+        //获取所有的未读条目数量
+        int unreadMessageCount = EMClient.getInstance().chatManager().getUnreadMessageCount();
+        if(unreadMessageCount==0){
+            badgeItem.hide(true);
+        }else if(unreadMessageCount>99){
+            badgeItem.show(true);
+            badgeItem.setText(String.valueOf(99));
+        }else{
+            badgeItem.show(true);
+            badgeItem.setText(String.valueOf(unreadMessageCount));
+        }
+
+    }
+
     private void initToolbar() {
         //如果不设置title 默认会把appname显示在toolbar上
         toolbar.setTitle("");
@@ -153,6 +178,18 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    void onGetMessageEvent(List<EMMessage> messages){
+        //更新未读消息的图标
+        updateBadgeItem();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateBadgeItem();
     }
 }
 

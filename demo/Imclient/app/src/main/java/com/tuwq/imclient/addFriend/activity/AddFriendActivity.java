@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class AddFriendActivity extends BaseActivity implements AddFriendView {
+public class AddFriendActivity extends BaseActivity implements AddFriendView{
 
     @InjectView(R.id.tv_title)
     TextView tvTitle;
@@ -118,7 +118,6 @@ public class AddFriendActivity extends BaseActivity implements AddFriendView {
             rvAddfriend.setVisibility(View.GONE);
             ivNodata.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override

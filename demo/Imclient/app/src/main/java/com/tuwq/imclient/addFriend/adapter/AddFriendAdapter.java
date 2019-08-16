@@ -61,14 +61,13 @@ public class AddFriendAdapter extends RecyclerView.Adapter<AddFriendAdapter.MyVi
             holder.btn_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(onAddFriendClickListener!=null){
-                        onAddFriendClickListener.onAddFriendClick(v,username);
+                    if(listener!=null){
+                        listener.onAddFriendClick(v,username);
                     }
                 }
             });
         }
     }
-
 
     @Override
     public int getItemCount() {
@@ -87,14 +86,12 @@ public class AddFriendAdapter extends RecyclerView.Adapter<AddFriendAdapter.MyVi
         }
     }
 
-    public void setOnAddFriendClickListener(AddFriendAdapter.onAddFriendClickListener onAddFriendClickListener) {
-        this.onAddFriendClickListener = onAddFriendClickListener;
-    }
-
-    private onAddFriendClickListener onAddFriendClickListener;
-
-
     public interface onAddFriendClickListener{
         void onAddFriendClick(View v,String username);
+    }
+    private onAddFriendClickListener listener;
+
+    public void setOnAddFriendClickListener(onAddFriendClickListener listener){
+        this.listener = listener;
     }
 }

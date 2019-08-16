@@ -52,8 +52,8 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <activity android:name=".main.activity.MainActivity">
-
+        <activity android:name=".main.activity.MainActivity"
+            android:launchMode="singleTask">
         </activity>
         <activity android:name=".splash.activity.SplashActvity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -69,6 +69,7 @@
         <activity android:name=".splash.activity.RegistActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".addFriend.activity.AddFriendActivity"/>
-        <activity android:name=".chat.activity.ChatActivity"/>
+        <activity android:name=".chat.activity.ChatActivity"
+            android:launchMode="singleTask"/>
     </application>
 </manifest>

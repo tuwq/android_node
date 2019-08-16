@@ -42,7 +42,7 @@ public class DBUtils {
      * @param username 当前的用户名
      * @param contacts 联系人的集合
      */
-    public static void updateContactFromEMServer(String username, List<String> contacts){
+    public static void updateContactFromEMServer(String username,List<String> contacts){
         if(context == null){
             throw new RuntimeException("请调用initDBUtils 初始化之后再使用!");
         }else{

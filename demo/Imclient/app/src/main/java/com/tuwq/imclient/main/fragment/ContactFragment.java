@@ -65,6 +65,7 @@ public class ContactFragment extends BaseFragment implements ContactView {
                 intent.putExtra("contact",username);
                 startActivity(intent);
             }
+
             @Override
             public boolean onLongClick(View v, final String username) {
                 Snackbar.make(contactLayout,"真的要删除"+username+"吗?",Snackbar.LENGTH_LONG)

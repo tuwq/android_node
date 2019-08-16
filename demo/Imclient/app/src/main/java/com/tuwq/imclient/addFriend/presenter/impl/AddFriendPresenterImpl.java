@@ -58,6 +58,7 @@ public class AddFriendPresenterImpl implements AddFriendPresenter {
             @Override
             public void run() {
                 try {
+
                     EMClient.getInstance().contactManager().addContact(username,"申请添加好友");
                     ThreadUtils.runOnMainThread(new Runnable() {
                         @Override

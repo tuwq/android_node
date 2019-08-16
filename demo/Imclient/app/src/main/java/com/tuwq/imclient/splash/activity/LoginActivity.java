@@ -132,7 +132,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         //permissions 动态申请的权限数组
         //grantResults int数组 用来封装每一个权限授权的结果  PermissionChecker.PERMISSION_GRANTED 授权了
 //        PermissionChecker.PERMISSION_DENIED; 拒绝了
-        if(grantResults[0]== PermissionChecker.PERMISSION_GRANTED){
+        if(grantResults[0]==PermissionChecker.PERMISSION_GRANTED){
             //说明给权限了
             login();
         }else{

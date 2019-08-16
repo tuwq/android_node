@@ -91,6 +91,5 @@ public class ContactPresenterImpl implements ContactPresenter {
                 }
             }
         });
-
     }
 }

@@ -8,12 +8,18 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 
+import com.hyphenate.chat.EMMessage;
 import com.tuwq.imclient.BaseActivity;
 import com.tuwq.imclient.main.activity.MainActivity;
 import com.tuwq.imclient.R;
 import com.tuwq.imclient.splash.presenter.SplashPresenter;
 import com.tuwq.imclient.splash.presenter.impl.SplashPresenterImpl;
 import com.tuwq.imclient.splash.view.SplashView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -49,7 +55,7 @@ public class SplashActvity extends BaseActivity implements SplashView {
                     startActivity(LoginActivity.class, true);
                 }
             });
-
         }
     }
+
 }
