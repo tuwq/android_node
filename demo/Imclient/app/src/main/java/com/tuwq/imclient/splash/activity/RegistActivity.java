@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
+import com.tuwq.imclient.BaseActivity;
 import com.tuwq.imclient.R;
 import com.tuwq.imclient.splash.presenter.RegistPresenter;
 import com.tuwq.imclient.splash.presenter.impl.RegistPresenterImpl;
@@ -24,7 +25,7 @@ import butterknife.OnClick;
 
 import static android.os.Build.*;
 
-public class RegistActivity extends BaseActivity implements RegistView {
+public class RegistActivity extends BaseActivity implements RegistView{
     @InjectView(R.id.iv_avatar)
     ImageView ivAvatar;
     @InjectView(R.id.et_username)
@@ -96,7 +97,8 @@ public class RegistActivity extends BaseActivity implements RegistView {
             startActivity(LoginActivity.class,true);
         }else{
             //通过吐司显示注册失败
-            showToast("注册失败");
+            showToast("注册失败:"+errorMsg);
         }
     }
 }
+

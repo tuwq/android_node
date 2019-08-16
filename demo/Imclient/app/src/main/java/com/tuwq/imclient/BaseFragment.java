@@ -1,4 +1,4 @@
-package com.tuwq.imclient.main.fragment;
+package com.tuwq.imclient;
 
 import android.support.v4.app.Fragment;
 

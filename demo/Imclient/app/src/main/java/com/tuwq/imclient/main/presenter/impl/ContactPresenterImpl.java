@@ -28,6 +28,38 @@ public class ContactPresenterImpl implements ContactPresenter {
         getContactsFromServer();
     }
 
+    @Override
+    public void updateContact() {
+        getContactsFromServer();
+    }
+
+    @Override
+    public void deleteContact(final String username) {
+        ThreadUtils.runOnNonUIThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    EMClient.getInstance().contactManager().deleteContact(username);
+                    ThreadUtils.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            contactView.onDeleteContact(true,null);
+                        }
+                    });
+                } catch (final HyphenateException e) {
+                    e.printStackTrace();
+                    ThreadUtils.runOnMainThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            contactView.onDeleteContact(false,e.getMessage());
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+
     public void getContactsFromServer() {
         ThreadUtils.runOnNonUIThread(new Runnable() {
             @Override
@@ -40,6 +72,8 @@ public class ContactPresenterImpl implements ContactPresenter {
                             return o1.compareTo(o2);
                         }
                     });
+                    //获取数据后 保存到数据库
+                    DBUtils.updateContactFromEMServer(EMClient.getInstance().getCurrentUser(),contactList);
                     ThreadUtils.runOnMainThread(new Runnable() {
                         @Override
                         public void run() {
@@ -57,5 +91,6 @@ public class ContactPresenterImpl implements ContactPresenter {
                 }
             }
         });
+
     }
 }

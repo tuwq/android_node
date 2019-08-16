@@ -1,6 +1,6 @@
 package com.tuwq.imclient.main;
 
-import com.tuwq.imclient.main.fragment.BaseFragment;
+import com.tuwq.imclient.BaseFragment;
 import com.tuwq.imclient.main.fragment.ContactFragment;
 import com.tuwq.imclient.main.fragment.ConversationFragment;
 import com.tuwq.imclient.main.fragment.PlugInFragment;

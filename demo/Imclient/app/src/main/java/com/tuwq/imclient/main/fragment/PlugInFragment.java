@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.hyphenate.chat.EMClient;
+import com.tuwq.imclient.BaseFragment;
 import com.tuwq.imclient.R;
 import com.tuwq.imclient.main.activity.MainActivity;
 import com.tuwq.imclient.main.presenter.LogoutPresenter;
@@ -19,7 +20,6 @@ import com.tuwq.imclient.utils.ToastUtils;
 import com.tuwq.imclient.splash.activity.LoginActivity;
 
 public class PlugInFragment extends BaseFragment implements PluginView {
-
     private ProgressDialog mProgressDialog = null;
     private LogoutPresenter presenter = null;
     private Button btn_logout;

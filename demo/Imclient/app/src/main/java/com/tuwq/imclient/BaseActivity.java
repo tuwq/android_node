@@ -1,21 +1,21 @@
-package com.tuwq.imclient.splash.activity;
+package com.tuwq.imclient;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.tuwq.imclient.Constant;
 import com.tuwq.imclient.utils.ToastUtils;
 
 public class BaseActivity extends AppCompatActivity {
-
     private SharedPreferences sp;
     private ProgressDialog progressDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = getSharedPreferences("config",MODE_PRIVATE);
     }
@@ -43,6 +43,7 @@ public class BaseActivity extends AppCompatActivity {
         return  sp.getString(Constant.SP_KEY_PASSWORD,"");
     }
 
+
     /**
      * 显示进度条对话框
      * @param msg
@@ -57,8 +58,19 @@ public class BaseActivity extends AppCompatActivity {
      * 取消进度条对话框
      */
     protected void cancelProgressDialog(){
+
+        if( progressDialog!=null){
+            progressDialog.dismiss();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         if( progressDialog!=null){
             progressDialog.dismiss();
         }
     }
 }
+

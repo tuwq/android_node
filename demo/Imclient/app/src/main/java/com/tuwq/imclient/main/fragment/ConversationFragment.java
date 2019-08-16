@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tuwq.imclient.BaseFragment;
 import com.tuwq.imclient.R;
 
 public class ConversationFragment extends BaseFragment {

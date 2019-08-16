@@ -1,44 +1,30 @@
 package com.tuwq.imclient.splash.presenter.impl;
 
-import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
-import com.tuwq.imclient.splash.activity.LoginActivity;
+import com.tuwq.imclient.callback.MyEmCalBack;
 import com.tuwq.imclient.splash.presenter.LoginPresenter;
 import com.tuwq.imclient.splash.view.LoginView;
-import com.tuwq.imclient.utils.ThreadUtils;
 
 public class LoginPresenterImpl implements LoginPresenter {
     private LoginView loginView;
 
-    public LoginPresenterImpl(LoginActivity loginView) {
+    public LoginPresenterImpl(LoginView loginView) {
         this.loginView = loginView;
     }
 
     @Override
-    public void login(final String username, String pwd) {
-        EMClient.getInstance().login(username, pwd, new EMCallBack() {
+    public void login(final String username, final String pwd) {
+        EMClient.getInstance().login(username, pwd, new MyEmCalBack() {
             @Override
-            public void onSuccess() {
-                ThreadUtils.runOnMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        loginView.onGetLoginState(username,true,null);
-                    }
-                });
+            public void success() {
+                loginView.onGetLoginState(username,true,null);
             }
-            @Override
-            public void onError(int i, final String s) {
-                ThreadUtils.runOnMainThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        loginView.onGetLoginState(username,false,s);
-                    }
-                });
-            }
-            @Override
-            public void onProgress(int i, String s) {
 
+            @Override
+            public void error(int i, String s) {
+                loginView.onGetLoginState(username,false,s);
             }
         });
+
     }
 }

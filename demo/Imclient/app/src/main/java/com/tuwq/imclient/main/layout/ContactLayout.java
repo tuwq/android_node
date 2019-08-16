@@ -3,6 +3,7 @@ package com.tuwq.imclient.main.layout;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -17,6 +18,7 @@ public class ContactLayout extends RelativeLayout {
     private RecyclerView recyclerView;
     private TextView tv_float;
     private Slidebar slidebar;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public ContactLayout(Context context) {
         this(context,null);
@@ -32,6 +34,7 @@ public class ContactLayout extends RelativeLayout {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         tv_float = (TextView) findViewById(R.id.tv_float);
         slidebar = (Slidebar) findViewById(R.id.slidebar);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefresh);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -46,5 +49,13 @@ public class ContactLayout extends RelativeLayout {
     public void setAdapter(RecyclerView.Adapter adapter){
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+    }
+
+    public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener listener){
+        swipeRefreshLayout.setOnRefreshListener(listener);
+    }
+
+    public void setRefreshing(boolean isRefreshing){
+        swipeRefreshLayout.setRefreshing(isRefreshing);
     }
 }

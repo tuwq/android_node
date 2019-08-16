@@ -1,11 +1,15 @@
 package com.tuwq.imclient.splash.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tuwq.imclient.BaseActivity;
 import com.tuwq.imclient.main.activity.MainActivity;
 import com.tuwq.imclient.R;
 import com.tuwq.imclient.splash.presenter.LoginPresenter;
@@ -24,7 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView{
     @InjectView(R.id.iv_avatar)
     ImageView ivAvatar;
     @InjectView(R.id.et_username)
@@ -82,14 +87,29 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                showProgressDialog("正在登录... ...");
-                presenter.login(etUsername.getText().toString(),
-                        etPwd.getText().toString());
+                login();
+
                 break;
             case R.id.tv_newuser:
                 startActivity(RegistActivity.class,false);
                 break;
         }
+    }
+
+    private void login() {
+        showProgressDialog("正在登录... ...");
+        String username = etUsername.getText().toString().trim();
+        String pwd = etPwd.getText().toString().trim();
+
+        // 如果用到隐私的权限 6.0之后 需要手动检测是否有权限
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==PermissionChecker.PERMISSION_GRANTED){
+            //如果有权限的话就执行登录
+            presenter.login(username,pwd);
+        }else{
+            //如果没有权限 就动态申请
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
+        }
+
     }
 
     @Override
@@ -101,6 +121,23 @@ public class LoginActivity extends BaseActivity implements LoginView {
         else{
             //如果登录失败弹吐司
             showToast(errorMsg);
+        }
+    }
+
+    //动态申请权限之后 会走回调
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //requestCode 区分不同的权限申请操作 注意requestCode不能<0
+        //permissions 动态申请的权限数组
+        //grantResults int数组 用来封装每一个权限授权的结果  PermissionChecker.PERMISSION_GRANTED 授权了
+//        PermissionChecker.PERMISSION_DENIED; 拒绝了
+        if(grantResults[0]== PermissionChecker.PERMISSION_GRANTED){
+            //说明给权限了
+            login();
+        }else{
+            //说明没给权限
+            showToast("没授权sd卡权限 数据库保存会失败 影响使用");
         }
 
     }

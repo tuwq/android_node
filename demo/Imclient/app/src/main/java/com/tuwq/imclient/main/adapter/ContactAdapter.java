@@ -1,6 +1,7 @@
 package com.tuwq.imclient.main.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,6 +16,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
         this.contacts = contacts;
     }
 
+    public List<String> getContacts() {
+        return contacts;
+    }
+
     private List<String> contacts;
 
     public ContactAdapter(List<String> contacts) {
@@ -24,14 +29,15 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(), R.layout.list_contact_item, null);
+        // View view = View.inflate(parent.getContext(), R.layout.list_contact_item, null);
+        View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.list_contact_item,parent,false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String contact = contacts.get(position);
+        final String contact = contacts.get(position);
         holder.tv_contact.setText(contact);
         holder.tv_section.setText(StringUtils.getFirstChar(contact));
         if(position == 0){
@@ -46,7 +52,37 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.MyViewHo
             }
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemClickListener!=null){
+                    onItemClickListener.onclick(v,contact);
+                }
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(onItemClickListener!=null){
+                    onItemClickListener.onLongClick(v,contact);
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
+    public interface OnItemClickListener{
+        void onclick(View v,String username);
+        boolean onLongClick(View v,String username);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    private OnItemClickListener onItemClickListener;
 
     @Override
     public int getItemCount() {

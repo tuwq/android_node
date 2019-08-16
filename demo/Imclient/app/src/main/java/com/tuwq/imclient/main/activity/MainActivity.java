@@ -15,9 +15,10 @@ import android.widget.TextView;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.tuwq.imclient.R;
-import com.tuwq.imclient.main.fragment.BaseFragment;
+import com.tuwq.imclient.BaseFragment;
+import com.tuwq.imclient.addFriend.activity.AddFriendActivity;
 import com.tuwq.imclient.main.FragmentFactory;
-import com.tuwq.imclient.splash.activity.BaseActivity;
+import com.tuwq.imclient.BaseActivity;
 
 import java.util.List;
 
@@ -139,7 +140,7 @@ public class MainActivity extends BaseActivity {
         int itemId = item.getItemId();
         switch (itemId){
             case R.id.menu_item_addfriend:
-                showToast("添加好友");
+                startActivity(AddFriendActivity.class,false);
                 break;
             case R.id.menu_item_scan:
                 showToast("扫一扫");

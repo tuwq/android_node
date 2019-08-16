@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 
+import com.tuwq.imclient.BaseActivity;
 import com.tuwq.imclient.main.activity.MainActivity;
 import com.tuwq.imclient.R;
 import com.tuwq.imclient.splash.presenter.SplashPresenter;
@@ -48,6 +49,7 @@ public class SplashActvity extends BaseActivity implements SplashView {
                     startActivity(LoginActivity.class, true);
                 }
             });
+
         }
     }
 }

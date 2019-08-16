@@ -68,5 +68,7 @@
             android:launchMode="singleTask"/>
         <activity android:name=".splash.activity.RegistActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".addFriend.activity.AddFriendActivity"/>
+        <activity android:name=".chat.activity.ChatActivity"/>
     </application>
 </manifest>
