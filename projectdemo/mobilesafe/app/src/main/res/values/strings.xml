@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">mobilesafe</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_set_up1">SetUp1Activity</string>
+    <string name="title_activity_set_up2">SetUp2Activity</string>
+    <string name="title_activity_set_up3">SetUp3Activity</string>
+    <string name="title_activity_set_up4">SetUp4Activity</string>
+    <string name="title_activity_set_up5">SetUp5Activity</string>
+    <string name="title_activity_lost_find">LostFindActivity</string>
+    <string name="title_activity_contact">ContactActivity</string>
+    <string name="sample_device_admin">手机卫士95</string>
+    <string name="sample_device_admin_description">手机卫士95，非常好用</string>
+    <string name="title_activity_black_number">BlackNumberActivity</string>
+    <string name="title_activity_black_number_add">BlackNumberAddActivity</string>
+    <string name="title_activity_black_number_update">BlackNumberUpdateActivity</string>
+    <string name="title_activity_common_tool">CommonToolActivity</string>
+    <string name="title_activity_address">AddressActivity</string>
+    <string name="title_activity_common_number">CommonNumberActivity</string>
+    <string name="title_activity_app_manager">AppManagerActivity</string>
+    <string name="title_activity_process_manager">ProcessManagerActivity</string>
+    <string name="title_activity_app_lock">AppLockActivity</string>
+    <string name="title_activity_app_un_lock">AppUnLockActivity</string>
+    <string name="accessibility_service_label">手机卫士95</string>
+    <string name="accessibility_service_description">手机卫士程序锁时刻保护您的应用的安全</string>
+    <string name="title_activity_traffic">TrafficActivity</string>
+    <string name="title_activity_clear_cache">ClearCacheActivity</string>
+    <string name="title_activity_anti_virus">AntiVirusActivity</string>
+</resources>

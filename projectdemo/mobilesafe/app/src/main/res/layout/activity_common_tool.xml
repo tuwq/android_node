@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tuwq="http://schemas.android.com/apk/res/com.tuwq.mobilesafe"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/ActivityTitleStyle"
+        android:text="常用工具"
+        />
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_top"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        tuwq:title="号码归属地查询"
+        tuwq:istoggle="false"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_commonnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_bottom"
+        tuwq:title="常用号码查询"
+        tuwq:istoggle="false"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_readsms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_top"
+        android:layout_marginTop="8dp"
+        tuwq:title="短信备份"
+        tuwq:istoggle="false"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_writesms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_bottom"
+        tuwq:title="短信还原"
+        tuwq:istoggle="false"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_applock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_top"
+        android:layout_marginTop="8dp"
+        tuwq:title="程序锁管理"
+        tuwq:istoggle="false"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_applockservice1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_middle"
+        tuwq:title="开启电子狗服务1"
+        tuwq:istoggle="true"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+    <com.tuwq.mobilesafe.view.SettingView
+        android:id="@+id/commontool_sv_applockservice2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_setting_item_bottom"
+        tuwq:title="开启电子狗服务1"
+        tuwq:istoggle="true"
+        ></com.tuwq.mobilesafe.view.SettingView>
+
+</LinearLayout>

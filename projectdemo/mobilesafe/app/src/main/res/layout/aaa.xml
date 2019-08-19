@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <!-- visibility  : 设置控件的隐藏和显示
+               visible ： 显示
+               invisible ： 隐藏控件，但是显示占用的位置
+               gone : 将控件和位置全部隐藏
+    -->
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:visibility="gone"
+        />
+
+</LinearLayout>
