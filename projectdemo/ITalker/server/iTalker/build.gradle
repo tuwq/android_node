@@ -1,0 +1,46 @@
+group 'iTalker'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven{
+        name "getui-nexus"
+        url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+    }
+}
+
+dependencies {
+    // Gson json
+    implementation  'com.google.code.gson:gson:2.8.0'
+    // Guava java 类封装
+    implementation  'com.google.guava:guava:21.0'
+
+    // 推送依赖
+    implementation 'com.gexin.platform:gexin-rp-sdk-http:4.0.1.7'
+
+    // Jersey 轻量级Restful接口框架
+    implementation  'org.glassfish.jersey.core:jersey-client:2.26-b03'
+    implementation  'org.glassfish.jersey.core:jersey-server:2.26-b03'
+    implementation  'org.glassfish.jersey.containers:jersey-container-servlet:2.26-b03'
+    // 也是一个 Json 解析库
+    implementation  'org.glassfish.jersey.media:jersey-media-json-jackson:2.26-b03'
+
+    // 数据库操作框架
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    implementation  'org.hibernate:hibernate-core:5.2.9.Final'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    implementation  'org.hibernate:hibernate-entitymanager:5.2.9.Final'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0
+    implementation  'org.hibernate:hibernate-c3p0:5.2.9.Final'
+
+    // MySQL 驱动库
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation  group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
+
+    testImplementation  group: 'junit', name: 'junit', version: '4.12'
+}
