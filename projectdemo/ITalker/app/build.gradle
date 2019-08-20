@@ -1,15 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "net.qiujuer.italker.push"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //个推相关参数
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "Rr51sROK4B8FXbq0TUjAF5",
+                GETUI_APP_KEY   : "eurxTdqHECAKgc7s4xtUe9",
+                GETUI_APP_SECRET: "wvAHiSQwuJ79Fp1tBy8Td8",
+                PACKAGE_NAME    : applicationId
+        ]
     }
     buildTypes {
         release {
@@ -17,6 +23,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    // Butterknife requires Java 8.
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -25,13 +32,34 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':common')
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:palette-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.android.support:design:28+'
 
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation "net.qiujuer.genius:ui:2.0.0"
+    implementation "net.qiujuer.genius:res:2.0.0"
+    implementation "net.qiujuer.genius:kit-handler:2.0.0"
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation "de.hdodenhof:circleimageview:2.1.0"
+    implementation "com.jakewharton:butterknife:9.0.0"
+    annotationProcessor "com.jakewharton:butterknife-compiler:9.0.0"
+    implementation "com.yalantis:ucrop:2.2.0-native"
+    implementation "pub.devrel:easypermissions:0.3.0"
+    // 个推
+    implementation "com.getui:sdk:2.9.3.0"
+    // 空气面板
+    implementation "net.qiujuer.widget:airpanel:1.1.0"
+    implementation project(path: ':factory')
+    implementation project(path: ':common')
+    // implementation project(path: ':face_res')
+    // implementation project(path: ':lang')
 }

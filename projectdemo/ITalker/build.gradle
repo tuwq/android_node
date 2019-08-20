@@ -2,42 +2,34 @@
 
 buildscript {
     repositories {
+        // mavenCentral()
         // google()
         // jcenter()
         maven { url "https://jitpack.io" }
         maven{ url 'https://maven.aliyun.com/repository/google' }
         maven{ url 'https://maven.aliyun.com/repository/jcenter' }
-        mavenCentral()
-        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
+        // mavenCentral()
         // google()
         // jcenter()
         maven { url "https://jitpack.io" }
         maven{ url 'https://maven.aliyun.com/repository/google' }
         maven{ url 'https://maven.aliyun.com/repository/jcenter' }
-        mavenCentral()
-        google()
+        //个推私有Maven URL地址
+        maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/" }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-ext{
-    // 版本号相关
-    versionCode = 1;
-    versionName = '1.0.0'
-
-    // 相关依赖库版本
-    supportVersion = '25.3.1'
-    butterknifeVersion = '8.5.1'
 }

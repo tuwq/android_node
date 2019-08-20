@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("net.qiujuer.italker.push", appContext.getPackageName());
+        assertEquals("net.qiujuer.italker.italker", appContext.getPackageName());
     }
 }
