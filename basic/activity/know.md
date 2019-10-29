@@ -1,9 +1,10 @@
-# activity
+## activity
 	activity代表一个用户的界面,每一个android的界面对应一个activity
 	activity可以创建一个窗口,在这个窗口上加载用户交互的界面
 	activity创建的时间就会调用onCreate
+	helloworld
 
-# 两种上下文
+## 两种上下文
 	activity.this Context子类 表示当前的activity,只能在当前的activity中使用
 	getApplicationContext() 返回Context,表示应用程序的总的上下文,任何activity中都可以用
 		在activity中都可以使用,在activity中getApplicationContext()可以取代activity.this
